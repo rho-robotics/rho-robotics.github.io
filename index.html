@@ -28,9 +28,11 @@
 <meta name="twitter:title" content="RHO: Your Coding Agent is Secretly a Roboticist">
 <meta name="twitter:description" content="RHO searches with reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state-of-the-art of 70.0%, using single-turn execution with no corrective LLM code edits at deployment.">
 <meta name="twitter:image" content="https://rho-robotics.github.io/static/images/og-card.jpg">
+<meta name="twitter:image:alt" content="RHO project page: a coding agent evolves robot control code to a single-turn state of the art, 70.0% with zero demonstrations.">
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="static/css/charts.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -39,7 +41,7 @@
 
 <!-- Sticky top nav -->
 <header class="topnav" id="topnav">
-  <a class="brand" href="#hero" aria-label="Rho, top of page">
+  <a class="brand" href="#hero" aria-label="RHO, top of page">
     <span class="brand-glyph" aria-label="RHO">&rho;</span>
     <span class="brand-word">Robotics Harness Optimization</span>
   </a>
@@ -211,7 +213,7 @@
 
     <figure class="figure-wide reveal" data-reveal>
       <img loading="lazy" src="static/images/fig_method_helix_vs_agent0-1.png"
-           alt="Diagram contrasting where the compute lives: the strongest agentic baseline issues up to 66 LLM calls per trial at deployment, while Rho issues zero LLM code-generation calls in the control loop on CaP-Bench, beating the prior CaP-Bench multi-turn record (CaP-Agent0) on Robosuite (single-turn vs multi-turn) and 2.5x better on LIBERO-PRO.">
+           alt="Diagram contrasting where the compute lives: the strongest agentic baseline issues up to 66 LLM calls per trial at deployment, while RHO issues zero LLM code-generation calls in the control loop on CaP-Bench, beating the prior CaP-Bench multi-turn record (CaP-Agent0) on Robosuite (single-turn vs multi-turn) and 2.5x better on LIBERO-PRO.">
       <figcaption>
         <strong>Where the work happens.</strong> The strongest competing system makes up to 66 model
         calls per attempt while the robot runs. RHO makes zero such calls during the task on CaP-Bench,
@@ -318,7 +320,7 @@
           </details>
           <noscript>
             <img loading="lazy" src="static/images/fig_libero_pro_bars-1.png"
-                 alt="Bar chart of LIBERO-PRO success across six perturbation cells. Rho outperforms OpenVLA, pi-0.5, and the prior agentic Code-as-Policies system using only single-turn execution.">
+                 alt="Bar chart of LIBERO-PRO success across six perturbation cells. RHO outperforms OpenVLA, pi-0.5, and the prior agentic Code-as-Policies system using only single-turn execution.">
           </noscript>
           <figcaption>
             Success across six perturbation types (object, goal, and spatial, each as a swap or a paraphrase; 3,000 single-turn trials). With no corrective model edits, RHO outperforms the vision-language-action (VLA) models and the prior Code-as-Policies system.
@@ -345,7 +347,7 @@
 
     <!-- LIBERO-PRO perturbation contrast -->
     <div class="result-block vla-collapse reveal" data-reveal>
-      <h3 class="sub-head">VLAs collapse to 0.0% under LIBERO-PRO's reasonable perturbations, while RHO holds at 45.0%, 3.5x better than &pi;<sub>0.5</sub></h3>
+      <h3 class="sub-head">End-to-end VLAs crater under LIBERO-PRO's reasonable perturbations (OpenVLA and &pi;<sub>0</sub> hit 0.0%), while RHO holds at 45.0%, 3.5x better than &pi;<sub>0.5</sub></h3>
       <p class="sub-note">
         This contrast is scoped to <strong>LIBERO-PRO (perturbed)</strong>: task-level and position perturbations that test generalization beyond the standard LIBERO training distribution.
       </p>
@@ -605,7 +607,7 @@
     <h2 class="sub-head">Cite</h2>
     <p class="citation-plain">
       Karim Elmaaroufi, Justin Svegliato, Sarunas Kalade, Graham Schelle, Sanjit A. Seshia, and Matei Zaharia.
-      "RHO: Your Coding Agent is Secretly a Roboticist." arXiv preprint, 2026.
+      "RHO: Your Coding Agent is Secretly a Roboticist." arXiv:2606.16458, 2026.
     </p>
     <div class="bib-wrap">
       <button class="copy-btn" id="copy-bib" type="button" aria-label="Copy BibTeX to clipboard">Copy</button>
@@ -614,6 +616,10 @@
   author        = {Elmaaroufi, Karim and Svegliato, Justin and Kalade, Sarunas and Schelle, Graham and Seshia, Sanjit A. and Zaharia, Matei},
   year          = {2026},
   howpublished  = {arXiv preprint},
+  eprint        = {2606.16458},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2606.16458},
   note          = {Robotics Harness Optimization (RHO)}
 }</code></pre>
     </div>
