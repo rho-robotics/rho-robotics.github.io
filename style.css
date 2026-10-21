@@ -85,7 +85,7 @@ sup { font-size: 0.62em; }
 }
 .brand { flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
-.brand-logo { width: 120px; height: auto; border-radius: 4px; }
+.brand-logo { width: 120px; height: auto; border-radius: 4px; transform: translateX(-9.85%); }
 .topnav-links { display: flex; align-items: center; gap: clamp(10px, 2vw, 26px); }
 .topnav-links a { color: var(--muted); font-size: 0.86rem; font-weight: 600; }
 .topnav-links a:hover { color: var(--text); text-decoration: none; }
@@ -133,6 +133,8 @@ sup { font-size: 0.62em; }
 .hero-logo {
   width: min(100%, 420px); height: auto;
   margin: 22px 0 20px; border-radius: 12px;
+  /* Align the visible mark, accounting for the PNG's transparent margin. */
+  transform: translateX(-9.85%);
 }
 .hero-sub {
   font-size: clamp(1.5rem, 4.4vw, 2.7rem);
