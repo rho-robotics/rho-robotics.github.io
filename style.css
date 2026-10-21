@@ -57,15 +57,6 @@ img, video { max-width: 100%; display: block; }
 
 sup { font-size: 0.62em; }
 
-.rho {
-  font-style: normal;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
-}
-
 /* ========== scroll progress + nav ========== */
 .scroll-progress {
   position: fixed; top: 0; left: 0; right: 0; height: 3px;
@@ -92,10 +83,9 @@ sup { font-size: 0.62em; }
   -webkit-backdrop-filter: saturate(140%) blur(12px);
   border-bottom-color: var(--line);
 }
-.brand { display: flex; align-items: baseline; gap: 10px; color: var(--text); }
+.brand { flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
-.brand-glyph { font-size: 1.5rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.brand-word { font-size: 0.82rem; letter-spacing: 0.02em; color: var(--muted); font-weight: 600; }
+.brand-logo { width: 120px; height: auto; border-radius: 4px; }
 .topnav-links { display: flex; align-items: center; gap: clamp(10px, 2vw, 26px); }
 .topnav-links a { color: var(--muted); font-size: 0.86rem; font-weight: 600; }
 .topnav-links a:hover { color: var(--text); text-decoration: none; }
@@ -106,7 +96,6 @@ sup { font-size: 0.62em; }
 .topnav-cta:hover { background: #7af7b4; }
 
 @media (max-width: 720px) {
-  .brand-word { display: none; }
   .topnav-links a:not(.topnav-cta) { display: none; }
 }
 
@@ -115,7 +104,7 @@ sup { font-size: 0.62em; }
   position: relative;
   min-height: 100svh;
   display: flex; flex-direction: column; justify-content: flex-start;
-  padding: 60px var(--pad) 48px;
+  padding: 92px var(--pad) 48px;
   overflow: hidden;
 }
 .hero-video {
@@ -141,13 +130,10 @@ sup { font-size: 0.62em; }
 }
 .pill-soft { background: rgba(255,255,255,0.07); color: var(--muted); border: 1px solid var(--line); }
 
-.hero-title {
-  font-size: clamp(5rem, 22vw, 13rem);
-  line-height: 1.0; margin: 0 0 18px;
-  padding-bottom: 0.2em;   /* clear the rho descender so it never collides with .hero-sub */
-  letter-spacing: -0.02em;
+.hero-logo {
+  width: min(100%, 420px); height: auto;
+  margin: 22px 0 20px; border-radius: 12px;
 }
-.hero-title .rho { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero-sub {
   font-size: clamp(1.5rem, 4.4vw, 2.7rem);
   font-weight: 800; line-height: 1.08; margin: 0 0 22px;
@@ -548,7 +534,8 @@ figcaption strong { color: var(--text); }
 
 /* ========== FOOTER ========== */
 .footer { padding: 56px 0 72px; background: var(--bg); border-top: 1px solid var(--line); text-align: center; }
-.foot-brand { font-size: 1.2rem; font-weight: 800; margin: 0 0 4px; }
+.foot-brand { margin: 0 0 18px; }
+.foot-logo { width: 180px; height: auto; margin: 0 auto; border-radius: 6px; }
 .foot-affil { color: var(--muted); margin: 0 0 16px; }
 .foot-links { margin: 0 0 16px; color: var(--faint); display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .foot-links a { color: var(--muted); }
