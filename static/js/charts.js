@@ -34,25 +34,26 @@
   ];
 
   var SERIES = [
-    { id: "rho",     label: "RHO",  color: "#5cf2a0", avg: 45.0,
-      vals: [12.2, 37.2, 50.6, 55.6, 53.0, 61.6] },
-    { id: "agent0",  label: "CaP-Agent0",    color: "#ffcf5c", avg: 18.17,
+    { id: "rho",     label: "RHO",  color: "#5cf2a0", avg: 64.33,
+      vals: [74.6, 69.2, 69.4, 46.8, 58.6, 67.4] },
+    { id: "agent0",  label: "CaP-Agent0",    color: "#ffcf5c", avg: 18.03,
       vals: [21.8, 18.2, 25.6, 16.8, 11.8, 14.0] },
-    { id: "pi05",    label: "π₀.₅", color: "#38bdf8", avg: 12.83,
-      vals: [17.0, 1.0, 38.0, 0.0, 20.0, 1.0] },
+    { id: "pi05",    label: "π₀.₅", color: "#38bdf8", avg: 13.20,
+      vals: [17.4, 0.8, 37.8, 2.0, 20.4, 0.8] },
     { id: "openvla", label: "OpenVLA",       color: "#ff6b5c", avg: 0.0,
       vals: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] }
   ];
 
   var NOTES = {
-    "rho:obj-swap":   "RHO's weakest cell, below Agent0's 21.8% here",
+    "rho:obj-swap":   "RHO's strongest cell",
+    "rho:goal-task":  "RHO's weakest cell, still 2.8x CaP-Agent0",
     "pi05:obj-swap":  "π₀.₅ lives on swap cells only",
     "pi05:goal-swap": "π₀.₅ lives on swap cells only",
     "pi05:spat-swap": "π₀.₅ lives on swap cells only",
     "openvla:obj-swap": "0.0% on every cell"
   };
 
-  var Y_MAX = 70;
+  var Y_MAX = 80;
   var SVGNS = "http://www.w3.org/2000/svg";
 
   var W = 820, H = 440;
@@ -107,7 +108,7 @@
       var ry = yOf(rho.avg);
       svg.appendChild(el("line", { "class": "ref-line", x1: x0, y1: ry, x2: x0 + plotW, y2: ry }));
       var rt = el("text", { "class": "ref-tag", x: x0 + plotW, y: ry - 5, "text-anchor": "end" });
-      rt.textContent = "RHO avg 45.0%";
+      rt.textContent = "RHO avg 64.33%";
       svg.appendChild(rt);
     }
 

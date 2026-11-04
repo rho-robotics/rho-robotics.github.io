@@ -20,66 +20,66 @@
   /* ========== Robosuite task data (ported from Variant B) ========== */
   var TASKS = [
     {
-      id: "cube_lifting", name: "Cube lift", tag: "saturates", status: "win",
+      id: "cube_lifting", name: "Cube lift", tag: "100%", status: "win",
       video: V + "cube_lifting_reward1.000.mp4",
       poster: P + "poster_cube_lifting_reward1.000.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "70.0% (490/700) under single-turn S4 deployment.",
-      nearMiss: { video: V + "cube_lifting_best_failed_reward_0p546_trial_39.mp4", poster: P + "poster_cube_lifting_best_failed_reward_0p546_trial_39.jpg", reward: "reward 0.546", caption: "RHO inherits the spatial-reasoning limits of the LLM that drives its search." }
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 100% · RHO GPT-5.5 98% (shown) · CaP-Agent0 97% (multi-turn).",
+      nearMiss: { video: V + "cube_lifting_best_failed_reward_0p546_trial_39.mp4", poster: P + "poster_cube_lifting_best_failed_reward_0p546_trial_39.jpg", reward: "reward 0.546", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
-      id: "cube_stack", name: "Cube stack", tag: "win", status: "win",
+      id: "cube_stack", name: "Cube stack", tag: "99%", status: "win",
       video: V + "cube_stack_reward1.000.mp4",
       poster: P + "poster_cube_stack_reward1.000.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "70.0% (490/700) under single-turn S4 deployment.",
-      nearMiss: { video: V + "cube_stack_best_failed_reward_0p008_trial_22.mp4", poster: P + "poster_cube_stack_best_failed_reward_0p008_trial_22.jpg", reward: "reward 0.008", caption: "RHO inherits the spatial-reasoning limits of the LLM that drives its search." }
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 99% · RHO GPT-5.5 98% (shown) · CaP-Agent0 98% (multi-turn).",
+      nearMiss: { video: V + "cube_stack_best_failed_reward_0p008_trial_22.mp4", poster: P + "poster_cube_stack_best_failed_reward_0p008_trial_22.jpg", reward: "reward 0.008", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
-      id: "cube_restack", name: "Cube restack", tag: "below baseline", status: "lose",
+      id: "cube_restack", name: "Cube restack", tag: "98%", status: "win",
       video: V + "cube_restack_reward1.000.mp4",
       poster: P + "poster_cube_restack_reward1.000.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "",
-      nearMiss: { video: V + "cube_restack_best_failed_reward_0p009_trial_88.mp4", poster: P + "poster_cube_restack_best_failed_reward_0p009_trial_88.jpg", reward: "reward 0.009", caption: "RHO inherits the spatial-reasoning limits of the LLM that drives its search." }
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 98% · RHO GPT-5.5 54% (shown) · CaP-Agent0 89% (multi-turn).",
+      nearMiss: { video: V + "cube_restack_best_failed_reward_0p009_trial_88.mp4", poster: P + "poster_cube_restack_best_failed_reward_0p009_trial_88.jpg", reward: "reward 0.009", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
-      id: "spill_wipe", name: "Spill wipe", tag: "saturates", status: "win",
+      id: "spill_wipe", name: "Spill wipe", tag: "100%", status: "win",
       video: V + "spill_wipe_reward1.000.mp4",
       poster: P + "poster_spill_wipe_reward1.000.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "70.0% (490/700) under single-turn S4 deployment."
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 100% · RHO GPT-5.5 100% (shown) · CaP-Agent0 100% (multi-turn)."
     },
     {
-      id: "two_arm_handover", name: "Two-arm handover", tag: "best win", status: "win",
+      id: "two_arm_handover", name: "Two-arm handover", tag: "99%", status: "win",
       video: V + "two_arm_handover_reward1.000.mp4",
       poster: P + "poster_two_arm_handover_reward1.000.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "70.0% (490/700) under single-turn S4 deployment.",
-      nearMiss: { video: V + "two_arm_handover_best_failed_reward_0p068_trial_50.mp4", poster: P + "poster_two_arm_handover_best_failed_reward_0p068_trial_50.jpg", reward: "reward 0.068", caption: "RHO inherits the spatial-reasoning limits of the LLM that drives its search." }
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 99% · RHO GPT-5.5 86% (shown) · CaP-Agent0 20% (multi-turn).",
+      nearMiss: { video: V + "two_arm_handover_best_failed_reward_0p068_trial_50.mp4", poster: P + "poster_two_arm_handover_best_failed_reward_0p068_trial_50.jpg", reward: "reward 0.068", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
-      id: "two_arm_lift", name: "Two-arm lift", tag: "below baseline", status: "lose",
+      id: "two_arm_lift", name: "Two-arm lift", tag: "100%", status: "win",
       video: V + "two_arm_lift_reward1.000.mp4",
       poster: P + "poster_two_arm_lift_reward1.000.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "",
-      nearMiss: { video: V + "two_arm_lift_best_failed_reward_0p330_trial_47.mp4", poster: P + "poster_two_arm_lift_best_failed_reward_0p330_trial_47.jpg", reward: "reward 0.330", caption: "RHO inherits the spatial-reasoning limits of the LLM that drives its search." }
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 100% · RHO GPT-5.5 53% (shown) · CaP-Agent0 74% (multi-turn).",
+      nearMiss: { video: V + "two_arm_lift_best_failed_reward_0p330_trial_47.mp4", poster: P + "poster_two_arm_lift_best_failed_reward_0p330_trial_47.jpg", reward: "reward 0.330", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
-      id: "nut_assembly", name: "Nut assembly", tag: "hardest", status: "hard",
+      id: "nut_assembly", name: "Nut assembly", tag: "97%", status: "win",
       video: V + "nut_assembly_success_reward_1p000_trial_56.mp4",
       poster: P + "poster_nut_assembly_success_reward_1p000_trial_56.jpg",
       reward: "reward 1.000",
-      caption: "A single execution of the candidate repository, no VDM, and no LLM code-generation calls.",
-      vs: "RHO inherits the spatial-reasoning limits of the LLM that drives its search.",
-      nearMiss: { video: V + "nut_assembly_best_failed_reward_0p006_trial_11.mp4", poster: P + "poster_nut_assembly_best_failed_reward_0p006_trial_11.jpg", reward: "reward 0.006", caption: "RHO inherits the spatial-reasoning limits of the LLM that drives its search." }
+      caption: "One single-turn execution of the GPT-5.5 repository: no VDM and no LLM code-generation calls.",
+      vs: "Success: RHO GPT-6.1 Sol (best search) 97% · RHO GPT-5.5 1% (shown) · CaP-Agent0 0% (multi-turn).",
+      nearMiss: { video: V + "nut_assembly_best_failed_reward_0p006_trial_11.mp4", poster: P + "poster_nut_assembly_best_failed_reward_0p006_trial_11.jpg", reward: "reward 0.006", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     }
   ];
 
@@ -99,6 +99,8 @@
     source.type = "video/mp4";
     video.appendChild(source);
     video.load();
+    var rate = parseFloat(video.getAttribute("data-rate"));
+    if (rate) { video.defaultPlaybackRate = rate; video.playbackRate = rate; }
     video.dataset.loaded = "1";
     var p = video.play();
     if (p && typeof p.catch === "function") { p.catch(function () {}); }
@@ -289,9 +291,8 @@
   }
 
   /* ========== Animated comparison bars (grafted from Variant B) ========== */
-  var barWrap = document.getElementById("struct-bars");
-  function fillBars() {
-    if (!barWrap) { return; }
+  var barWraps = Array.prototype.slice.call(document.querySelectorAll(".bars"));
+  function fillBars(barWrap) {
     barWrap.querySelectorAll(".bar-fill").forEach(function (bf) {
       var w = bf.getAttribute("data-w");
       bf.style.width = reduceMotion ? (w + "%") : "0%";
@@ -302,16 +303,16 @@
       }
     });
   }
-  if (barWrap) {
+  if (barWraps.length) {
     if (!("IntersectionObserver" in window)) {
-      fillBars();
+      barWraps.forEach(fillBars);
     } else {
       var barObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { fillBars(); barObs.unobserve(e.target); }
+          if (e.isIntersecting) { fillBars(e.target); barObs.unobserve(e.target); }
         });
       }, { threshold: 0.35 });
-      barObs.observe(barWrap);
+      barWraps.forEach(function (w) { barObs.observe(w); });
     }
   }
 

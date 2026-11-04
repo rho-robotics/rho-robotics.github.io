@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RHO: Your Coding Agent is Secretly a Roboticist</title>
 
-<meta name="description" content="RHO searches with reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state-of-the-art of 70.0%, using single-turn execution with no corrective LLM code edits at deployment.">
-<meta name="author" content="Karim Elmaaroufi, Justin Svegliato, Sarunas Kalade, Graham Schelle, Sanjit A. Seshia, Matei Zaharia">
+<meta name="description" content="RHO evolves robot-policy repositories using reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state of the art of 99.0% with single-turn execution and no corrective LLM code edits at deployment, and the same code transfers unchanged to a physical Franka and Kinova Gen3.">
+<meta name="author" content="Karim Elmaaroufi, Sarunas Kalade, Yansong Wu, Justin Svegliato, Graham Schelle, Negar Mehr, Sanjit A. Seshia, Matei Zaharia">
 <meta name="theme-color" content="#08090d">
 
 <link rel="canonical" href="https://rho-robotics.github.io/">
@@ -16,21 +16,20 @@
 <meta property="og:site_name" content="Robotics Harness Optimization">
 <meta property="og:url" content="https://rho-robotics.github.io/">
 <meta property="og:title" content="RHO: Your Coding Agent is Secretly a Roboticist">
-<meta property="og:description" content="RHO searches with reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state-of-the-art of 70.0%, using single-turn execution with no corrective LLM code edits at deployment.">
+<meta property="og:description" content="RHO evolves robot-policy repositories using reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state of the art of 99.0% with single-turn execution and no corrective LLM code edits at deployment, and the same code transfers unchanged to a physical Franka and Kinova Gen3.">
 <meta property="og:image" content="https://rho-robotics.github.io/static/images/og-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="RHO project page: a coding agent evolves robot control code to a single-turn state of the art, 70.0% with zero demonstrations.">
+<meta property="og:image:alt" content="RHO project page: a coding agent evolves robot control code to a single-turn state of the art, 99.0% with zero demonstrations.">
 
 <!-- Twitter card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@rho_robotics">
 <meta name="twitter:title" content="RHO: Your Coding Agent is Secretly a Roboticist">
-<meta name="twitter:description" content="RHO searches with reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state-of-the-art of 70.0%, using single-turn execution with no corrective LLM code edits at deployment.">
+<meta name="twitter:description" content="RHO evolves robot-policy repositories using reflective feedback from environment reward and execution rather than teleoperation demonstrations. On Robosuite, RHO sets a new state of the art of 99.0% with single-turn execution and no corrective LLM code edits at deployment, and the same code transfers unchanged to a physical Franka and Kinova Gen3.">
 <meta name="twitter:image" content="https://rho-robotics.github.io/static/images/og-card.jpg">
-<meta name="twitter:image:alt" content="RHO project page: a coding agent evolves robot control code to a single-turn state of the art, 70.0% with zero demonstrations.">
+<meta name="twitter:image:alt" content="RHO project page: a coding agent evolves robot control code to a single-turn state of the art, 99.0% with zero demonstrations.">
 
-<link rel="stylesheet" href="style.css?v=logo-align">
+<link rel="stylesheet" href="style.css?v=camera-ready-6">
 <link rel="stylesheet" href="static/css/charts.css">
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
@@ -49,6 +48,7 @@
     <a href="#bottleneck">Problem</a>
     <a href="#idea">Idea</a>
     <a href="#results">Results</a>
+    <a href="#hardware">Hardware</a>
     <a href="#tryit">Try it</a>
     <a class="topnav-cta" href="https://github.com/KE7/HELIX" target="_blank" rel="noopener">Code</a>
   </nav>
@@ -66,18 +66,24 @@
   <div class="hero-inner reveal" data-reveal>
     <p class="authors">
       <a href="https://kael.tech.blog/" target="_blank" rel="noopener">Karim Elmaaroufi</a><sup>1,2</sup>,
-      <a href="https://justinsvegliato.com/" target="_blank" rel="noopener">Justin Svegliato</a><sup>1</sup>,
       <a href="https://www.linkedin.com/in/skalade/" target="_blank" rel="noopener">Sarunas Kalade</a><sup>3</sup>,
+      Yansong Wu<sup>4</sup>,
+      <a href="https://justinsvegliato.com/" target="_blank" rel="noopener">Justin Svegliato</a><sup>1</sup>,
       <a href="https://www.linkedin.com/in/graham-schelle-2401556/" target="_blank" rel="noopener">Graham Schelle</a><sup>3</sup>,
+      Negar Mehr<sup>1</sup>,
       <a href="https://people.eecs.berkeley.edu/~sseshia/" target="_blank" rel="noopener">Sanjit A. Seshia</a><sup>1</sup>,
       <a href="https://people.eecs.berkeley.edu/~matei/" target="_blank" rel="noopener">Matei Zaharia</a><sup>1</sup>
     </p>
-    <p class="affil"><sup>1</sup> <a href="https://www.berkeley.edu/" target="_blank" rel="noopener">UC Berkeley</a> &nbsp;&middot;&nbsp; <sup>2</sup> <a href="https://embodied.science" target="_blank" rel="noopener">Embodied Science</a> &nbsp;&middot;&nbsp; <sup>3</sup> <a href="https://www.amd.com/" target="_blank" rel="noopener">AMD</a></p>
+    <p class="affil"><sup>1</sup> <a href="https://www.berkeley.edu/" target="_blank" rel="noopener">UC Berkeley</a> &nbsp;&middot;&nbsp; <sup>2</sup> <a href="https://embodied.science" target="_blank" rel="noopener">Embodied Science</a> &nbsp;&middot;&nbsp; <sup>3</sup> <a href="https://www.amd.com/" target="_blank" rel="noopener">AMD</a> &nbsp;&middot;&nbsp; <sup>4</sup> <a href="https://www.tum.de/en/" target="_blank" rel="noopener">Technical University of Munich</a></p>
 
     <img class="hero-logo" src="static/images/rho-logo.png?v=9cef9320"
          width="2172" height="724" alt="RHO — Robotics Harness Optimization"
          fetchpriority="high">
     <h1 class="hero-sub">RHO: Your Coding Agent is Secretly a Roboticist</h1>
+    <ul class="hero-venues" aria-label="Workshop acceptances">
+      <li>Accepted at the <a href="https://sim2real2field-corl26.github.io/" target="_blank" rel="noopener">Sim2Real2Field Workshop @ CoRL 2026</a></li>
+      <li>Accepted at the <a href="https://lifelongagent.github.io/" target="_blank" rel="noopener">2nd Workshop on Lifelong Agents @ COLM 2026</a></li>
+    </ul>
 
     <p class="hero-tldr">
       RHO (Robotics Harness Optimization) unlocks tool-enabled LLM coding agents to unleash their inner roboticist. Through reflective evolutionary search, it writes and rewrites a robot's control code in simulation until the code itself solves the task, reaching state of the art among Code-as-Policies methods.
@@ -85,8 +91,8 @@
 
     <div class="hero-leads">
       <div class="lead">
-        <span class="lead-num" data-count="70.0" data-suffix="%">70.0%</span>
-        <span class="lead-label">Single-turn deployment with no corrective LLM code edits</span>
+        <span class="lead-num" data-count="99.0" data-suffix="%">99.0%</span>
+        <span class="lead-label">Robosuite success, single-turn, with no corrective LLM code edits</span>
       </div>
       <div class="lead lead-accent">
         <span class="lead-num" data-count="0" data-suffix="">0</span>
@@ -151,7 +157,7 @@
         <h3>Robotics Harness Optimization</h3>
         <ul>
           <li>Shifts the compute burden from test-time to training-time</li>
-          <li>Ships a frozen, readable codebase you can inspect</li>
+          <li>Ships a readable repository you can inspect</li>
           <li>Same action primitives, higher success rate</li>
         </ul>
       </div>
@@ -169,61 +175,177 @@
       Let a coding agent <em>write and rewrite</em> the robot's code until it works.
     </h2>
     <p class="act-lede reveal" data-reveal>
-      RHO hands the job to a tool-enabled coding agent and lets it practice in a simulator through reflective evolutionary search: it edits, runs, and debugs whole programs against a scalar reward, keeping the variants that help. The end product is one self-contained multi-file code repository. Because the final product is just code, you can read it, debug it, and reuse it. (For experts: this relocates the model's expensive search out of deployment and into a one-time training phase, so what ships on primitive-only benchmarks are frozen Repositories-as-Policies.)
+      RHO hands the job to a tool-enabled coding agent and lets it practice in a simulator through reflective evolutionary search: it edits, runs, and debugs whole programs against a scalar reward, keeping the variants that help. The end product is one self-contained multi-file code repository. Because the final product is just code, you can read it, debug it, and reuse it. (For experts: this relocates the model's expensive search out of deployment and into a one-time training phase, so on primitive-only benchmarks we chose to ship fixed Repositories-as-Policies.)
     </p>
 
-    <figure class="figure-wide reveal" data-reveal>
-      <img loading="lazy" src="static/images/fig_method_helix_system-1.png"
-           alt="System diagram of Robotics Harness Optimization. A parent repository sampled from a validation-scored Pareto frontier is mutated by a tool-enabled coding agent that edits multiple files and runs candidate policies in an isolated workspace with whitelisted access to the robot environment; children that pass the training gate are validated and added to the frontier, and the best-mean-reward repository is deployed.">
-      <figcaption>
-        <strong>RHO system overview.</strong> A parent repository is sampled from a
-        validation-scored Pareto frontier and mutated by a tool-enabled coding agent that edits multiple
-        files and runs candidates in an isolated workspace with whitelisted access to the robot
-        environment. Children that beat their parent on a paired minibatch are validated and added to
-        the frontier; the best-mean-reward repository is deployed.
-      </figcaption>
-    </figure>
+    <!-- RHO system overview: interactive loop + runtime stack -->
+    <section class="sysov reveal" data-reveal id="system-overview" aria-labelledby="sysov-title">
+      <div class="sysov-head">
+        <div>
+          <p class="race-kicker">RHO system overview</p>
+          <h3 class="race-title" id="sysov-title">Search over a robot repository at training time, deploy what it found</h3>
+        </div>
+        <div class="sysov-controls">
+          <div class="sysov-mode" role="group" aria-label="Show the system during">
+            <button type="button" class="sysov-mode-btn is-active" data-mode="search" aria-pressed="true">Search (training)</button>
+            <button type="button" class="sysov-mode-btn" data-mode="deploy" aria-pressed="false">Deployment</button>
+          </div>
+          <button type="button" class="race-btn" id="sysov-play" aria-pressed="false">&#9654; Play the loop</button>
+        </div>
+      </div>
 
-    <div class="steps reveal" data-reveal>
-      <div class="step">
-        <span class="step-no">1</span>
-        <h3>Run</h3>
-        <p>A candidate repository runs in the simulator, earning a reward plus detailed feedback on what went wrong.</p>
+      <div class="sysov-loop" id="sysov-loop">
+        <p class="sysov-stack-label">Search loop &middot; one generation</p>
+        <div class="sysov-nodes" role="group" aria-label="Steps of one search generation">
+          <button type="button" class="sysov-node" data-step="run" aria-pressed="true" aria-controls="sysov-detail">
+            <span class="step-no">1</span><span class="sysov-node-name">Run</span><span class="sysov-node-sub">simulator trials</span>
+          </button>
+          <span class="sysov-link" aria-hidden="true"><span>traces + scores</span></span>
+          <button type="button" class="sysov-node" data-step="rewrite" aria-pressed="false" aria-controls="sysov-detail">
+            <span class="step-no">2</span><span class="sysov-node-name">Rewrite</span><span class="sysov-node-sub">coding agent</span>
+          </button>
+          <span class="sysov-link" aria-hidden="true"><span>child</span></span>
+          <button type="button" class="sysov-node" data-step="keep" aria-pressed="false" aria-controls="sysov-detail">
+            <span class="step-no">3</span><span class="sysov-node-name">Keep the winners</span><span class="sysov-node-sub">acceptance gate</span>
+          </button>
+          <span class="sysov-link" aria-hidden="true"><span>accepted</span></span>
+          <button type="button" class="sysov-node" data-step="library" aria-pressed="false" aria-controls="sysov-detail">
+            <span class="step-no">4</span><span class="sysov-node-name">Build a library</span><span class="sysov-node-sub">Pareto frontier</span>
+          </button>
+        </div>
+        <div class="sysov-return" aria-hidden="true"><span>next generation samples a parent from the library, while budget remains</span></div>
       </div>
-      <div class="step">
-        <span class="step-no">2</span>
-        <h3>Rewrite</h3>
-        <p>The repository and that feedback go to the coding agent, which mutates many files at once.</p>
+
+      <div class="sysov-detail" id="sysov-detail" aria-live="polite">
+        <h4 id="sysov-detail-title">1 &middot; Run</h4>
+        <p id="sysov-detail-text">A candidate repository runs training trials in the simulator through the benchmark's host services. It earns a reward plus execution traces and judge scores on what went wrong.</p>
       </div>
-      <div class="step">
-        <span class="step-no">3</span>
-        <h3>Keep the winners</h3>
-        <p>A child is kept only if it beats its parent on a paired minibatch of trials (the acceptance gate).</p>
+
+      <div class="sysov-stack" aria-label="Runtime stack">
+        <p class="sysov-stack-label">Runtime stack</p>
+        <div class="sysov-stack-row">
+          <div class="sysov-box sysov-solver" data-part="solver">
+            <span class="sysov-box-name">Repository-as-Policy</span>
+            <span>Python policy, LLM harness, or skill graph</span>
+            <span class="sysov-tag sysov-tag-write">written by the coding agent</span>
+          </div>
+          <span class="sysov-arrow" aria-hidden="true">action &rarr;</span>
+          <div class="sysov-box sysov-host">
+            <span class="sysov-box-name">Host services <span class="sysov-tag sysov-tag-own">benchmark-owned</span></span>
+            <div class="sysov-services">
+              <div class="sysov-svc" data-part="perception"><strong>Perception</strong><span>pose + grasp estimation</span><em>train + deploy</em></div>
+              <div class="sysov-svc" data-part="action"><strong>Action</strong><span>primitives + IK</span><em>train + deploy</em></div>
+              <div class="sysov-svc sysov-svc-vdm" data-part="vdm"><strong>Judge VLM</strong><span>scores rollouts</span><em>training only</em></div>
+            </div>
+          </div>
+          <span class="sysov-arrow" aria-hidden="true">control &rarr;</span>
+          <div class="sysov-box sysov-sim" data-part="sim">
+            <span class="sysov-box-name" id="sysov-sim-name">Simulator</span>
+            <span>Robosuite &middot; LIBERO &middot; O3DE</span>
+            <span class="sysov-tag sysov-tag-own">benchmark-owned</span>
+          </div>
+        </div>
       </div>
-      <div class="step">
-        <span class="step-no">4</span>
-        <h3>Build a library</h3>
-        <p>The best variants are retained as a diverse library, a Pareto frontier over task coverage, not a single greedy chain.</p>
-      </div>
-    </div>
+      <noscript>
+        <img loading="lazy" src="static/images/fig_method_helix_system-1.png"
+             alt="System diagram of Robotics Harness Optimization: a reflection prompt feeds a coding agent, whose candidate repository is evaluated in the simulator through benchmark host services; a strict-improvement gate admits it to a Pareto frontier, and the next generation repeats while budget remains.">
+      </noscript>
+    </section>
 
     <div class="pull reveal" data-reveal>
       <p>
-        Unlike prior reflective optimization methods which optimize only a single prompt, function, or delimited code region, RHO optimizes entire multi-file repositories of code at once.
+        Unlike prior reflective optimization methods, which optimize only a single prompt, function, or delimited code region, RHO's optimizer, HELIX, searches over entire multi-file repositories at once. RHO points it at any robot-policy repository, whether <a href="#robosuite-results">Python policies</a>, <a href="#rai-results">LLM agent harnesses</a>, or <a href="#gap-results">skill graphs</a>, with live robot-environment access (REaaS) isolated from the evaluator.
       </p>
     </div>
 
-    <figure class="figure-wide reveal" data-reveal>
-      <img loading="lazy" src="static/images/fig_method_helix_vs_agent0-1.png"
-           alt="Diagram contrasting where the compute lives: the strongest agentic baseline issues up to 66 LLM calls per trial at deployment, while RHO issues zero LLM code-generation calls in the control loop on CaP-Bench, beating the prior CaP-Bench multi-turn record (CaP-Agent0) on Robosuite (single-turn vs multi-turn) and 2.5x better on LIBERO-PRO.">
-      <figcaption>
-        <strong>Where the work happens.</strong> The strongest competing system makes up to 66 model
-        calls per attempt while the robot runs. RHO makes zero such calls during the task on CaP-Bench,
-        yet beats the prior CaP-Bench record (CaP-Agent0, multi-turn) on Robosuite (70.0% in one shot vs 68.29% with up to 66 calls) and
-        does 2.5x better on LIBERO-PRO (45.0% vs 18.17%). For experts: RHO moves the costly trial-and-error
-        into a training-time search, then ships the result as a frozen codebase.
-      </figcaption>
-    </figure>
+    <!-- Where the LLM compute lives: interactive trial race -->
+    <section class="race reveal" data-reveal id="compute-race" aria-labelledby="race-title" aria-describedby="race-summary">
+      <div class="race-head">
+        <div>
+          <p class="race-kicker">CaP-Bench Robosuite &middot; same perception and motion primitives</p>
+          <h3 class="race-title" id="race-title">Where the LLM compute lives</h3>
+          <p class="race-summary" id="race-summary">
+            CaP-Agent0 calls language models while the robot runs: up to 6 turns of 11 LLM/VLM calls each, 113.6&nbsp;s per trial.
+            RHO calls them only during a one-time search; on CaP-Bench we deploy the searched repository as fixed code: 0 code-generation calls, 9.31&nbsp;s per trial.
+          </p>
+        </div>
+        <div class="race-controls">
+          <button type="button" class="race-btn race-play" id="race-play" aria-describedby="race-speed">&#9654; Play one trial</button>
+          <button type="button" class="race-btn" id="race-reset">Reset</button>
+          <span class="race-speed" id="race-speed">plays at 10&times; speed</span>
+        </div>
+      </div>
+
+      <div class="race-grid">
+        <div class="race-colhead" aria-hidden="true"></div>
+        <div class="race-colhead" aria-hidden="true">Training &middot; once</div>
+        <div class="race-colhead" aria-hidden="true">Deployment &middot; every trial (shared time axis)</div>
+        <div class="race-colhead race-colhead-num" aria-hidden="true">Result</div>
+
+        <!-- CaP-Agent0 lane -->
+        <div class="race-name race-old">CaP-Agent0<span>LLM in the control loop</span></div>
+        <div class="race-train race-train-none">no training phase</div>
+        <div class="race-deploy">
+          <div class="race-track" aria-hidden="true"><div class="race-fill race-fill-old" id="race-fill-old"></div></div>
+          <div class="race-turns" id="race-turns" role="img"
+               aria-label="Up to 6 turns of 11 LLM or VLM calls each, up to 66 calls per trial."></div>
+          <p class="race-note race-note-old">up to 6 turns &times; 11 LLM/VLM calls = up to <strong>66 calls</strong></p>
+        </div>
+        <div class="race-nums">
+          <span class="race-big race-old-c">68.29%</span><span class="race-cap">multi-turn success</span>
+          <span class="race-time" id="race-time-old" aria-live="off">113.6 s</span><span class="race-cap">mean per trial &middot; <span id="race-calls-old">66</span> calls</span>
+        </div>
+
+        <!-- RHO lane -->
+        <div class="race-name race-new">RHO<span>fixed code (our CaP-Bench choice)</span></div>
+        <div class="race-train race-train-rho">
+          <span class="race-train-line"><strong>Search runs once:</strong> a coding agent edits the repository and runs simulator trials</span>
+          <span class="race-train-stats">99.0% by generation 17 &middot; 16.5 h &middot; $20.50 of mutator tokens</span>
+        </div>
+        <div class="race-deploy">
+          <div class="race-track" aria-hidden="true"><div class="race-fill race-fill-new" id="race-fill-new"></div></div>
+          <div class="race-pipe">
+            <span class="race-chip">RaP</span><span class="race-arrow" aria-hidden="true">&rarr;</span>
+            <code class="race-chip race-code">infer(env) &rarr; action</code><span class="race-arrow" aria-hidden="true">&rarr;</span>
+            <span class="race-chip">robot</span>
+          </div>
+          <p class="race-note race-note-new"><strong>0 LLM code-generation calls</strong> in the control loop</p>
+        </div>
+        <div class="race-nums">
+          <span class="race-big race-new-c">99.0%</span><span class="race-cap">single-turn success</span>
+          <span class="race-time" id="race-time-new" aria-live="off">9.31 s</span><span class="race-cap">mean per trial &middot; <strong class="race-new-c">12.2&times; faster</strong></span>
+        </div>
+
+        <div></div><div></div>
+        <div class="race-axis" id="race-axis" aria-hidden="true"></div>
+        <div></div>
+      </div>
+
+      <p class="race-status sr-only" id="race-status" aria-live="polite"></p>
+      <p class="race-foot">
+        99.0%: GPT-6.1 Sol mutator, best of two searches, on evaluation seeds never seen in search. Trial times are means over
+        20 cube-stacking trials; the RHO time uses the GPT-5.5 repository (70.0% success). The 66 calls are the maximum
+        (all 6 turns) and are spaced evenly for illustration.
+      </p>
+      <details class="data-table-wrap">
+        <summary>Show the underlying numbers (data table)</summary>
+        <div class="data-table-scroll">
+          <table class="ix-table">
+            <caption class="sr-only">Deployment cost and success on CaP-Bench Robosuite.</caption>
+            <thead><tr><th scope="col">System</th><th scope="col">LLM code-generation calls per trial</th><th scope="col">Mean trial time (cube stacking, N=20)</th><th scope="col">Robosuite success</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">CaP-Agent0, multi-turn</th><td>up to 66 (6 turns &times; 11)</td><td>113.6 s</td><td>68.29%</td></tr>
+              <tr><th scope="row">CaP-Agent0, single-turn</th><td>up to 11</td><td>28.4 s</td><td>24.0%</td></tr>
+              <tr><th scope="row">RHO, single-turn</th><td>0</td><td>9.31 s (GPT-5.5 RaP)</td><td>99.0% (GPT-6.1 Sol) &middot; 70.0% (GPT-5.5)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <noscript>
+        <img loading="lazy" src="static/images/rho-vs-cap-agent0.svg" width="1600" height="660"
+             alt="CaP-Agent0 makes up to 66 LLM/VLM calls per trial at deployment (113.6 s, 68.29%); RHO searches once at training time and deploys a frozen repository with 0 code-generation calls (9.31 s, 99.0%).">
+      </noscript>
+    </section>
 
     <div class="why-loop reveal" data-reveal>
       <p class="why-stat">
@@ -232,9 +354,9 @@
         <span data-count="70" data-suffix="%">70%</span>
       </p>
       <p class="why-text">
-        A single coding agent (single-turn), no matter how long it is allowed to think, tops out at just
-        30.0% on the held-out tasks. The reflective evolutionary loop is what lifts the <em>same model and
-        tools</em> to 70%. The loop is the method, not just the agent.
+        With GPT-5.5, a single tool-enabled mutation with unlimited internal turns reaches 30.0% on
+        Robosuite. RHO's repeated reflective search lifts the <em>same model and tools</em> to 70.0%.
+        The search loop, not just the agent, does the work.
       </p>
     </div>
   </div>
@@ -286,22 +408,54 @@
     <!-- Robosuite headline numbers -->
     <div class="stat-band reveal" data-reveal>
       <div class="stat">
-        <span class="stat-num" data-count="70.0" data-suffix="%">70.0%</span>
-        <span class="stat-cap">70.0% (490/700) under single-turn S4 deployment.</span>
+        <span class="stat-num" data-count="99.0" data-suffix="%">99.0%</span>
+        <span class="stat-cap">Single-turn S4 success (693/700) with a GPT-6.1 Sol mutator, on evaluation seeds never seen in search.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="12.2" data-suffix="x">12.2x</span>
+        <span class="stat-cap">Faster per trial than CaP-Agent0 (9.31 s vs 113.6 s), measured with the GPT-5.5 repository at 70.0% (490/700).</span>
       </div>
       <div class="stat">
         <span class="stat-num">0 <span class="vs">vs</span> 66</span>
         <span class="stat-cap">0 LLM code-generation calls in the control loop, vs up to 66 per CaP-Agent0 trial.</span>
       </div>
-      <div class="stat">
-        <span class="stat-num" data-count="2.3" data-suffix="x">2.3x</span>
-        <span class="stat-cap">RHO's evolved solver beats a single-shot Codex baseline 2.3x (490/700 vs 210/700).</span>
+    </div>
+
+    <div class="result-block reveal" data-reveal id="robosuite-results">
+      <h3 class="sub-head">CaP-Bench Robosuite: 99.0% with one frozen repository</h3>
+      <p class="sub-note">
+        Per-task success (%) over 100 evaluation trials per task. Both RHO columns deploy the selected
+        repository as fixed, single-turn code; CaP-Agent0 corrects its code over up to 6 turns. The GPT-6.1 Sol
+        column is the better of two searches (the other reached 96.1%, 673/700); both train on seeds 101&ndash;125 and
+        evaluate on seeds 1&ndash;100. This search reached 99.0% by generation 17, after 16.5 hours and $20.50 of
+        mutator tokens. The rollouts above come from the GPT-5.5 repository.
+      </p>
+      <div class="data-table-scroll">
+        <table class="ix-table robosuite-table">
+          <caption class="sr-only">Robosuite per-task success for RHO with GPT-6.1 Sol (best search), RHO with GPT-5.5, and CaP-Agent0.</caption>
+          <thead>
+            <tr><th scope="col">Task</th><th scope="col">RHO GPT-6.1 Sol<br><span class="th-sub">single-turn, best search</span></th><th scope="col">RHO GPT-5.5<br><span class="th-sub">single-turn</span></th><th scope="col">CaP-Agent0<br><span class="th-sub">multi-turn</span></th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Cube lifting</th><td class="best">100</td><td>98</td><td>97</td></tr>
+            <tr><th scope="row">Cube stacking</th><td class="best">99</td><td>98</td><td>98</td></tr>
+            <tr><th scope="row">Cube restacking</th><td class="best">98</td><td>54</td><td>89</td></tr>
+            <tr><th scope="row">Nut assembly</th><td class="best">97</td><td>1</td><td>0</td></tr>
+            <tr><th scope="row">Spill wiping</th><td class="best">100</td><td class="best">100</td><td class="best">100</td></tr>
+            <tr><th scope="row">Two-arm lift</th><td class="best">100</td><td>53</td><td>74</td></tr>
+            <tr><th scope="row">Two-arm handover</th><td class="best">99</td><td>86</td><td>20</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row">Overall</th><td class="best">99.0</td><td>70.0</td><td>68.29</td></tr>
+          </tfoot>
+        </table>
       </div>
     </div>
 
+
     <!-- LIBERO-PRO -->
     <div class="result-block reveal" data-reveal>
-      <h3 class="sub-head">CaP-Bench LIBERO-PRO: 45.0% handling changes better than VLAs without demonstrations</h3>
+      <h3 class="sub-head">CaP-Bench LIBERO-PRO: 64.33% on held-out perturbations, without demonstrations</h3>
       <div class="result-split">
         <figure class="result-fig ix-chart ix-bars">
           <figcaption class="ix-title" id="libero-title">
@@ -312,8 +466,7 @@
             <div class="chart-tip" id="libero-tip" role="status" aria-live="polite" hidden></div>
           </div>
           <p class="ix-foot">
-            Dashed line = RHO overall average (45.0%). OpenVLA and
-            <span class="nowrap">&pi;<sub>0</sub></span> score 0.0% on every cell (bars sit on the axis).
+            Dashed line = RHO overall average (64.33%). OpenVLA scores 0.0% on every cell (bars sit on the axis).
             Hover, focus, or tap a bar for the exact value.
           </p>
           <details class="data-table-wrap">
@@ -330,17 +483,17 @@
         </figure>
         <div class="result-nums">
           <div class="rn">
-            <span class="rn-big" data-count="45.0" data-suffix="%">45.0%</span>
-            <span class="rn-cap">RHO success (1351 of 3000), within 63 generations.</span>
+            <span class="rn-big" data-count="64.33" data-suffix="%">64.33%</span>
+            <span class="rn-cap">RHO success (1930 of 3000), after 50 generations of search on unperturbed LIBERO with a GPT-5.6 Sol mutator.</span>
           </div>
           <div class="rn rn-row">
             <div><span class="rn-mid">0.0%</span><span class="rn-cap">OpenVLA</span></div>
-            <div><span class="rn-mid">12.83%</span><span class="rn-cap">&pi;<sub>0.5</sub> average</span></div>
-            <div><span class="rn-mid">18.17%</span><span class="rn-cap">CaP-Agent0</span></div>
+            <div><span class="rn-mid">13.20%</span><span class="rn-cap">&pi;<sub>0.5</sub> average</span></div>
+            <div><span class="rn-mid">18.03%</span><span class="rn-cap">CaP-Agent0</span></div>
           </div>
           <div class="rn-tags">
-            <span class="tagnum"><strong>3.5&times;</strong> over &pi;<sub>0.5</sub></span>
-            <span class="tagnum"><strong>2.5&times;</strong> over the strongest agentic baseline</span>
+            <span class="tagnum"><strong>4.9&times;</strong> over &pi;<sub>0.5</sub></span>
+            <span class="tagnum"><strong>3.6&times;</strong> over CaP-Agent0 (same APIs)</span>
             <span class="tagnum"><strong>0 demos</strong> used</span>
           </div>
         </div>
@@ -349,7 +502,7 @@
 
     <!-- LIBERO-PRO perturbation contrast -->
     <div class="result-block vla-collapse reveal" data-reveal>
-      <h3 class="sub-head">End-to-end VLAs crater under LIBERO-PRO's reasonable perturbations (OpenVLA and &pi;<sub>0</sub> hit 0.0%), while RHO holds at 45.0%, 3.5x better than &pi;<sub>0.5</sub></h3>
+      <h3 class="sub-head">End-to-end VLAs crater under LIBERO-PRO's perturbations (OpenVLA hits 0.0%), while RHO holds at 64.33%, 4.9x better than &pi;<sub>0.5</sub></h3>
       <p class="sub-note">
         This contrast is scoped to <strong>LIBERO-PRO (perturbed)</strong>: task-level and position perturbations that test generalization beyond the standard LIBERO training distribution.
       </p>
@@ -370,13 +523,13 @@
           <div class="perturb-scoreboard" aria-label="LIBERO-PRO perturbed aggregate success rates">
             <div class="score-row score-rho">
               <span class="score-name">RHO</span>
-              <span class="score-val">45.0%</span>
-              <span class="score-note">1351 / 3000</span>
+              <span class="score-val">64.33%</span>
+              <span class="score-note">1930 / 3000</span>
             </div>
             <div class="score-row">
               <span class="score-name">&pi;<sub>0.5</sub></span>
-              <span class="score-val">12.83%</span>
-              <span class="score-note">3.5x lower</span>
+              <span class="score-val">13.20%</span>
+              <span class="score-note">4.9x lower</span>
             </div>
             <div class="score-row score-zero">
               <span class="score-name">OpenVLA</span>
@@ -386,7 +539,7 @@
           </div>
 
           <p class="scope-note">
-            On standard LIBERO, OpenVLA and &pi;<sub>0.5</sub> both score over 90.0%; under LIBERO-PRO's perturbations OpenVLA scores 0.0% and &pi;<sub>0.5</sub> scores 12.83%.
+            On standard LIBERO, OpenVLA and &pi;<sub>0.5</sub> score 93.0% and 96.9%; under LIBERO-PRO's perturbations OpenVLA scores 0.0% and &pi;<sub>0.5</sub> scores 13.20%.
           </p>
         </div>
       </div>
@@ -399,7 +552,7 @@
         <!-- Evolution trajectory (interactive inline-SVG scatter) -->
         <figure class="ix-chart ix-evo" id="evo-widget">
           <figcaption class="evo-head">
-            <p class="evo-kicker">Reflective evolution &middot; CaP-Bench Robosuite</p>
+            <p class="evo-kicker">RHO search &middot; CaP-Bench Robosuite &middot; GPT-5.5 mutator</p>
             <h4 class="evo-title">From near-zero to a working solver within 200 generations.</h4>
           </figcaption>
 
@@ -484,12 +637,12 @@
     </div>
 
     <!-- O3DE before/after, LLM-in-the-loop -->
-    <div class="result-block reveal" data-reveal>
+    <div class="result-block reveal" data-reveal id="rai-results">
       <h3 class="sub-head">RAI O3DE: RHO optimizes deployed robotic LLM harnesses too</h3>
       <p class="sub-note">
         Here the deployment is multi-turn: a language-model agent keeps running while the robot works.
         Rather than write standalone code, RHO optimizes the agent's harness: its system prompt and the
-        bodies of its tools (the agent's control interface). On the hard held-out split, success nearly
+        bodies of its tools (the agent's control interface). GPT-5.1 runs inside the harness; GPT-5.5 is the mutator. On the hard held-out split, success nearly
         doubles from 23.5% to 44.3% (p &lt; 0.001, 3-run average), while using 27% fewer tool calls and
         20% less wall-clock time (single representative run; the sign holds under the 3-run average).
       </p>
@@ -531,6 +684,37 @@
       </div>
     </div>
 
+    <!-- Graph-as-Policy -->
+    <div class="result-block reveal" data-reveal id="gap-results">
+      <h3 class="sub-head">Graph-as-Policy: RHO optimizes skill graphs too</h3>
+      <p class="sub-note">
+        <a href="https://arxiv.org/abs/2607.05369" target="_blank" rel="noopener">Graph-as-Policy</a> (GaP) runs a policy as a directed
+        graph of human-written skills. Starting from the 20-node grocery-packing graph in the GaP codebase (LIBERO, simulated Franka,
+        11 instructions), we ran two RHO searches of 50 generations each with a GPT-5.6 Terra mutator. <strong>Compose-Only</strong>
+        may add nodes and rewire the graph but must use the skills as given; <strong>Compose-and-Edit</strong> may also rewrite the
+        skills. Both searches learned to read the instruction: grasps per single-item task fall from 4.17 to 1.04.
+      </p>
+      <div class="data-table-scroll">
+        <table class="ix-table robosuite-table">
+          <caption class="sr-only">Graph-as-Policy grocery packing: success, cycle time, and throughput for the starting graph and the two RHO searches.</caption>
+          <thead>
+            <tr><th scope="col">Graph</th><th scope="col">Success<br><span class="th-sub">100 trials</span></th><th scope="col">Cycle time</th><th scope="col">Successes / hr</th><th scope="col">vs. starting graph</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Starting graph</th><td>67/100</td><td>144.9 &plusmn; 95.9 s</td><td>16.6</td><td>1.00&times;</td></tr>
+            <tr><th scope="row">RHO, Compose-and-Edit</th><td class="best">97/100</td><td>68.0 &plusmn; 15.1 s</td><td>51.3</td><td>3.08&times;</td></tr>
+            <tr><th scope="row">RHO, Compose-Only</th><td class="best">96/100</td><td class="best">39.4 &plusmn; 19.9 s</td><td class="best">87.6</td><td class="best">5.27&times;</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-note">
+        Throughput is successes per hour, following the GaP paper. All three graphs end a trial with the simulator's success check;
+        Compose-Only calls it earlier. A real robot has no such oracle; without it, Compose-Only would be about 2.8&times; the
+        starting graph. Search cost: $14.39 (Compose-Only) and $22.83 (Compose-and-Edit).
+        <a href="https://kael.tech.blog/2026/09/26/robotics-harness-optimization-on-graph-as-policy/" target="_blank" rel="noopener">Full setup and analysis &rarr;</a>
+      </p>
+    </div>
+
     <!-- Structural prior (animated bars, grafted from Variant B) -->
     <div class="result-block reveal" data-reveal>
       <h3 class="sub-head">Why rewrite the whole codebase</h3>
@@ -544,27 +728,47 @@
       <p class="sub-note">Only the top two bars share the same backend (Codex GPT-5.5). The behavior-tree baseline used Claude Sonnet 4.6 and the finite-state-machine baseline used Qwen3.6-27B, so the gap to those two bars reflects model capability as well as representation, not a pure structure-only comparison.</p>
     </div>
 
+    <!-- Live environment access ablation -->
+    <div class="result-block reveal" data-reveal>
+      <h3 class="sub-head">Live simulator access helps; RHO's search gives the final push</h3>
+      <p class="sub-note">
+        Two GPT-6.1 Sol coding-agent sessions start from the same six-file scaffold with no task policies, the same
+        robot API documentation, and feedback from the same 12 training trials across three task families. The only
+        difference: one can run candidates against the live simulator (REaaS) before submitting. Each resulting
+        repository is evaluated once on all seven Robosuite tasks over seeds 1&ndash;100 (700 trials), single-turn.
+      </p>
+      <div class="bars" id="reaas-bars">
+        <div class="bar-row"><span class="bar-label">One session, no live REaaS</span><div class="bar-track"><div class="bar-fill dim" data-w="38.4"><span>38.0% (266/700)</span></div></div></div>
+        <div class="bar-row"><span class="bar-label">One session, live REaaS</span><div class="bar-track"><div class="bar-fill" data-w="73.7"><span>73.0% (511/700)</span></div></div></div>
+        <div class="bar-row"><span class="bar-label">RHO search</span><div class="bar-track"><div class="bar-fill win" data-w="100"><span>99.0% (693/700)</span></div></div></div>
+      </div>
+      <p class="sub-note">The RHO search bar is the best of two searches with the same GPT-6.1 Sol mutator, evaluated on the same 700 trials: repeated sessions, the acceptance gate, and the Pareto frontier take one session's 73.0% to 99.0%. In the no-access evaluation, 34 trials ended in native simulator crashes; we replayed exactly those trials with the same policy, seeds, and evaluator and report their outcomes (13 successes).</p>
+    </div>
+
     <!-- Honesty asset -->
     <div class="result-block honesty reveal" data-reveal>
       <h3 class="sub-head">What's still hard</h3>
       <div class="honesty-split">
         <figure class="honesty-vid">
-          <video muted loop playsinline preload="none" data-lazy
-                 poster="static/images/poster_nut_assembly_best_failed_reward_0p006_trial_11.jpg"
-                 data-src="static/videos/nut_assembly_best_failed_reward_0p006_trial_11.mp4"
-                 aria-label="Best near-miss attempt at the Robosuite nut-assembly task, falling short of success at reward 0.006.">
+          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
+                 poster="static/images/poster_real_kinova_mouse_failure_displaced.webp"
+                 data-src="static/videos/real_kinova_mouse_failure_displaced.mp4"
+                 aria-label="Kinova Gen3 failing to lift a computer mouse that was displaced 12 cm two seconds into the trial.">
           </video>
           <figcaption>
-            The best near-miss on nut-assembly (trial 11, reward 0.006). High-precision insertion is
-            the fine-geometry ceiling RHO inherits from its driving LLM.
+            Kinova Gen3, failure (148 s, 3&times; playback): the mouse was displaced 12 cm two seconds into the trial.
           </figcaption>
         </figure>
         <div class="honesty-text">
           <p>
-            Aggregate gains come with per-task tradeoffs. RHO is below the
-            multi-turn baseline on object-swap on LIBERO-PRO (12.2%) and on cube_restack and
-            two_arm_lift on Robosuite, and nut_assembly remains an open challenge for both
-            RHO and the baseline.
+            Recovery strategies learned in simulation cover the failures seen in simulation. On real robots,
+            perception degrades under different cameras and lighting, so real-world success can vary even when the
+            program logic executes correctly: the Kinova lifts an unseen mouse in 17 of 20 trials, while the
+            nominally simpler Franka cube lift succeeds in 14 of 20.
+          </p>
+          <p>
+            Per-task tradeoffs remain in simulation. The GPT-5.5 repository, used for the timing and hardware results,
+            trails CaP-Agent0 on cube restacking (54% vs 89%) and two-arm lift (53% vs 74%).
           </p>
         </div>
       </div>
@@ -572,9 +776,69 @@
   </div>
 </section>
 
-<!-- ============ ACT 4: TRY IT ============ -->
+<!-- ============ ACT 4: HARDWARE ============ -->
+<section class="act act-hardware" id="hardware">
+  <div class="act-rail" aria-hidden="true"><span class="act-no">04</span><span class="act-tag">Sim to real</span></div>
+
+  <div class="act-body">
+    <p class="kicker reveal" data-reveal>Hardware</p>
+    <h2 class="act-head reveal" data-reveal>Trained in simulation, deployed <em>unchanged</em> on two real robots.</h2>
+    <p class="act-lede reveal" data-reveal>
+      We deployed the GPT-5.5 repository evolved in Robosuite without changing its policy code. Only the
+      perception and motion APIs are swapped for embodiment-specific implementations with the same interfaces.
+    </p>
+
+    <div class="stat-band reveal" data-reveal>
+      <div class="stat">
+        <span class="stat-num">14/20</span>
+        <span class="stat-cap">Franka Emika Panda, cube lifting.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">11/20</span>
+        <span class="stat-cap">Franka Emika Panda, cube stacking.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">17/20</span>
+        <span class="stat-cap">Kinova Gen3 with a Robotiq gripper, lifting a computer mouse never seen in simulation.</span>
+      </div>
+    </div>
+
+    <div class="result-block reveal" data-reveal>
+      <h3 class="sub-head">A new robot and a new object</h3>
+      <p class="sub-note">
+        On the Kinova, three things change from simulation: the search used cubes, and this is a computer mouse; the mouse
+        moves between trials and, in this trial, during execution; and the search used a simulated Franka.
+      </p>
+      <div class="hw-grid hw-grid-3">
+        <figure>
+          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
+                 poster="static/images/poster_real_franka_cube_lift.jpg"
+                 data-src="static/videos/real_franka_cube_lift.mp4"
+                 aria-label="Franka Panda grasping a cube on the tabletop and lifting it.">
+          </video>
+          <figcaption><strong>Franka Emika Panda</strong>: lift a cube. Success, 3&times; playback.</figcaption>
+        </figure>
+        <figure>
+          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
+                 poster="static/images/poster_real_kinova_mouse_success_after_displacement.webp"
+                 data-src="static/videos/real_kinova_mouse_success_after_displacement.mp4"
+                 aria-label="Kinova Gen3 lifting a computer mouse after it was moved during the trial.">
+          </video>
+          <figcaption><strong>Kinova Gen3</strong>: lift a mouse moved during the trial. Success, 3&times; playback.</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="static/images/real_kinova_initial_positions.webp" width="720" height="1080"
+               alt="Ten initial positions of the computer mouse overlaid on one camera frame.">
+          <figcaption>Ten initial mouse positions on the Kinova, overlaid on one frame.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 5: TRY IT ============ -->
 <section class="act act-try" id="tryit">
-  <div class="act-rail" aria-hidden="true"><span class="act-no">04</span><span class="act-tag">Try it</span></div>
+  <div class="act-rail" aria-hidden="true"><span class="act-no">05</span><span class="act-tag">Try it</span></div>
 
   <div class="act-body">
     <p class="kicker reveal" data-reveal>Run it yourself</p>
@@ -584,7 +848,7 @@
       <a class="try-card" href="https://github.com/KE7/HELIX" target="_blank" rel="noopener">
         <span class="try-ico">&#9679;</span>
         <h3>HELIX on GitHub</h3>
-        <p>The reflective evolutionary search and the evolved policy repositories.</p>
+        <p>The reflective evolutionary optimizer RHO uses to search over repositories.</p>
         <span class="try-go">github.com/KE7/HELIX &rarr;</span>
       </a>
       <a class="try-card" href="https://arxiv.org/abs/2606.16458" target="_blank" rel="noopener">
@@ -608,14 +872,14 @@
   <div class="act-body">
     <h2 class="sub-head">Cite</h2>
     <p class="citation-plain">
-      Karim Elmaaroufi, Justin Svegliato, Sarunas Kalade, Graham Schelle, Sanjit A. Seshia, and Matei Zaharia.
+      Karim Elmaaroufi, Sarunas Kalade, Yansong Wu, Justin Svegliato, Graham Schelle, Negar Mehr, Sanjit A. Seshia, and Matei Zaharia.
       "RHO: Your Coding Agent is Secretly a Roboticist." arXiv:2606.16458, 2026.
     </p>
     <div class="bib-wrap">
       <button class="copy-btn" id="copy-bib" type="button" aria-label="Copy BibTeX to clipboard">Copy</button>
       <pre id="bibtex-block"><code>@misc{elmaaroufi2026rho,
   title         = {{$\rho$}: Your Coding Agent is Secretly a Roboticist},
-  author        = {Elmaaroufi, Karim and Svegliato, Justin and Kalade, Sarunas and Schelle, Graham and Seshia, Sanjit A. and Zaharia, Matei},
+  author        = {Elmaaroufi, Karim and Kalade, Sarunas and Wu, Yansong and Svegliato, Justin and Schelle, Graham and Mehr, Negar and Seshia, Sanjit A. and Zaharia, Matei},
   year          = {2026},
   howpublished  = {arXiv preprint},
   eprint        = {2606.16458},
@@ -628,33 +892,9 @@
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="act-body">
-    <p class="foot-brand">
-      <a href="#hero" aria-label="RHO, top of page">
-        <img class="foot-logo" src="static/images/rho-logo.png?v=9cef9320"
-             width="2172" height="724" alt="RHO — Robotics Harness Optimization" loading="lazy">
-      </a>
-    </p>
-    <p class="foot-affil"><a href="https://www.berkeley.edu/" target="_blank" rel="noopener">UC Berkeley</a> &nbsp;&middot;&nbsp; <a href="https://embodied.science" target="_blank" rel="noopener">Embodied Science</a> &nbsp;&middot;&nbsp; <a href="https://www.amd.com/" target="_blank" rel="noopener">AMD</a></p>
-    <p class="foot-links">
-      <a href="https://github.com/KE7/HELIX" target="_blank" rel="noopener">Code</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://arxiv.org/abs/2606.16458" target="_blank" rel="noopener">Paper (arXiv)</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://rho-robotics.github.io/">rho-robotics.github.io</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://x.com/rho_robotics" target="_blank" rel="noopener">@rho_robotics</a>
-    </p>
-    <p class="foot-fine">
-      All results are on simulation benchmarks. Content licensed CC BY 4.0. "State of the art" is
-      scoped to Code-as-Policies methods on these benchmarks.
-    </p>
-  </div>
-</footer>
-
 <script src="script.js"></script>
 <script src="static/js/charts.js"></script>
+<script src="static/js/compute-race.js"></script>
+<script src="static/js/system-overview.js"></script>
 </body>
 </html>
