@@ -76,7 +76,8 @@
     if (d.html) { text.innerHTML = d.html; } else { text.textContent = d.text; }
     simName.textContent = mode === "deploy" ? "Simulator or real robot" : "Simulator";
     light(d.parts);
-    playBtn.hidden = mode === "deploy";
+    // Keep the button's space (visibility, not display) so the page stays put.
+    playBtn.style.visibility = mode === "deploy" ? "hidden" : "";
   }
 
   function stop() {
@@ -112,6 +113,14 @@
   playBtn.addEventListener("click", function () { playing ? stop() : start(); });
 
   render();
+  if (window.rhoHoldSize) {
+    var esc = document.createElement("div");
+    window.rhoHoldSize(text, ORDER.map(function (k) {
+      esc.textContent = STEPS[k].text;
+      return esc.innerHTML;
+    }).concat([DEPLOY.html]));
+    window.rhoHoldSize(playBtn, ["&#9654; Play the loop", "&#10073;&#10073; Pause"], "width");
+  }
   if (!reduceMotion && "IntersectionObserver" in window) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {

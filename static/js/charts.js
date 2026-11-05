@@ -46,7 +46,7 @@
 
   var NOTES = {
     "rho:obj-swap":   "RHO's strongest cell",
-    "rho:goal-task":  "RHO's weakest cell, still 2.8x CaP-Agent0",
+    "rho:goal-task":  "RHO's weakest cell, still 2.8× CaP-Agent0",
     "pi05:obj-swap":  "π₀.₅ lives on swap cells only",
     "pi05:goal-swap": "π₀.₅ lives on swap cells only",
     "pi05:spat-swap": "π₀.₅ lives on swap cells only",

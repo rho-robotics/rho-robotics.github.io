@@ -122,6 +122,12 @@
   // Start in the final state (fully readable); autoplay once when scrolled into view.
   render(sim);
   setBtn();
+  if (window.rhoHoldSize) {
+    window.rhoHoldSize(playBtn, ["&#10073;&#10073; Pause", "&#8635; Replay trial", "&#9654; Play one trial"], "width");
+    // Ticking times keep their widest width (no re-wrap mid-play).
+    window.rhoHoldSize(timeOld, ["113.6 s", "88.8 s"], "width");
+    window.rhoHoldSize(timeNew, ["9.31 s", "8.88 s"], "width");
+  }
   if (!reduceMotion && "IntersectionObserver" in window) {
     var seen = false;
     var obs = new IntersectionObserver(function (entries) {

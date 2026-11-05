@@ -29,7 +29,7 @@
 <meta name="twitter:image" content="https://rho-robotics.github.io/static/images/og-card.jpg">
 <meta name="twitter:image:alt" content="RHO project page: a coding agent evolves robot control code to a single-turn state of the art, 99.0% with zero demonstrations.">
 
-<link rel="stylesheet" href="style.css?v=camera-ready-6">
+<link rel="stylesheet" href="style.css?v=camera-ready-7">
 <link rel="stylesheet" href="static/css/charts.css">
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
@@ -139,7 +139,7 @@
     <figure class="bignum reveal" data-reveal>
       <span class="bignum-val" data-count="66" data-suffix="">66</span>
       <figcaption>
-        Model calls per attempt, at the top end, in the prior CaP-Bench record on Robosuite (CaP-Agent0). Every call adds delay and inference cost.
+        LLM/VLM calls per trial, at the top end, in the prior CaP-Bench record on Robosuite (CaP-Agent0). Every call adds delay and inference cost.
       </figcaption>
     </figure>
 
@@ -148,8 +148,8 @@
         <h3>Past research: a model in the loop</h3>
         <ul>
           <li>Corrects itself mid-rollout (multi-turn)</li>
-          <li>CaP-Agent0 issues up to 66 LLM calls at test-time per trial</li>
-          <li>68.29% to 24% without multi-turn scaffolding</li>
+          <li>CaP-Agent0 issues up to 66 LLM/VLM calls at test time per trial</li>
+          <li>68.29% to 24.0% without multi-turn scaffolding</li>
         </ul>
       </div>
       <div class="contrast-arrow" aria-hidden="true">&rarr;</div>
@@ -175,7 +175,7 @@
       Let a coding agent <em>write and rewrite</em> the robot's code until it works.
     </h2>
     <p class="act-lede reveal" data-reveal>
-      RHO hands the job to a tool-enabled coding agent and lets it practice in a simulator through reflective evolutionary search: it edits, runs, and debugs whole programs against a scalar reward, keeping the variants that help. The end product is one self-contained multi-file code repository. Because the final product is just code, you can read it, debug it, and reuse it. (For experts: this relocates the model's expensive search out of deployment and into a one-time training phase, so on primitive-only benchmarks we chose to ship fixed Repositories-as-Policies.)
+      RHO hands the job to a tool-enabled coding agent and lets it practice in a simulator through reflective evolutionary search: it edits, runs, and debugs whole programs against a scalar reward, keeping the variants that help. The end product is one self-contained multi-file code repository. Because the final product is just code, you can read it, debug it, and reuse it. (For experts: this relocates the model's expensive search out of deployment and into a one-time training phase, so on primitive-only benchmarks we chose to ship fixed Repositories-as-Policies, or RaPs.)
     </p>
 
     <!-- RHO system overview: interactive loop + runtime stack -->
@@ -332,18 +332,18 @@
         <div class="data-table-scroll">
           <table class="ix-table">
             <caption class="sr-only">Deployment cost and success on CaP-Bench Robosuite.</caption>
-            <thead><tr><th scope="col">System</th><th scope="col">LLM code-generation calls per trial</th><th scope="col">Mean trial time (cube stacking, N=20)</th><th scope="col">Robosuite success</th></tr></thead>
+            <thead><tr><th scope="col">System</th><th scope="col">Model calls per trial</th><th scope="col">Mean trial time (cube stacking, N=20)</th><th scope="col">Robosuite success</th></tr></thead>
             <tbody>
-              <tr><th scope="row">CaP-Agent0, multi-turn</th><td>up to 66 (6 turns &times; 11)</td><td>113.6 s</td><td>68.29%</td></tr>
-              <tr><th scope="row">CaP-Agent0, single-turn</th><td>up to 11</td><td>28.4 s</td><td>24.0%</td></tr>
-              <tr><th scope="row">RHO, single-turn</th><td>0</td><td>9.31 s (GPT-5.5 RaP)</td><td>99.0% (GPT-6.1 Sol) &middot; 70.0% (GPT-5.5)</td></tr>
+              <tr><th scope="row">CaP-Agent0, multi-turn</th><td>up to 66 LLM/VLM calls (6 turns &times; 11)</td><td>113.6 s</td><td>68.29%</td></tr>
+              <tr><th scope="row">CaP-Agent0, single-turn</th><td>up to 11 LLM/VLM calls</td><td>28.4 s</td><td>24.0%</td></tr>
+              <tr><th scope="row">RHO, single-turn</th><td>0 code-generation calls</td><td>9.31 s (GPT-5.5 RaP)</td><td>99.0% (GPT-6.1 Sol) &middot; 70.0% (GPT-5.5)</td></tr>
             </tbody>
           </table>
         </div>
       </details>
       <noscript>
         <img loading="lazy" src="static/images/rho-vs-cap-agent0.svg" width="1600" height="660"
-             alt="CaP-Agent0 makes up to 66 LLM/VLM calls per trial at deployment (113.6 s, 68.29%); RHO searches once at training time and deploys a frozen repository with 0 code-generation calls (9.31 s, 99.0%).">
+             alt="CaP-Agent0 makes up to 66 LLM/VLM calls per trial at deployment (113.6 s, 68.29%); RHO searches once at training time and deploys a frozen repository with 0 code-generation calls (9.31 s with the GPT-5.5 repository at 70.0%; the GPT-6.1 Sol repository reaches 99.0%).">
       </noscript>
     </section>
 
@@ -376,7 +376,7 @@
     <div class="rollouts reveal" data-reveal>
       <h3 class="sub-head">Click a task. Watch the robot run the code.</h3>
       <p class="sub-note">
-        A single execution of the candidate repository, no VDM, and no LLM code-generation calls.
+        One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.
       </p>
 
       <div class="explorer">
@@ -392,7 +392,7 @@
               <span class="reward-badge" id="stage-reward">reward 1.000</span>
             </div>
             <p class="explorer-caption" id="stage-caption">
-              A single execution of the candidate repository, no VDM, and no LLM code-generation calls.
+              One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.
             </p>
             <div class="vs-line" id="stage-vs"></div>
             <div class="nut-toggle" id="nut-toggle" hidden>
@@ -409,15 +409,15 @@
     <div class="stat-band reveal" data-reveal>
       <div class="stat">
         <span class="stat-num" data-count="99.0" data-suffix="%">99.0%</span>
-        <span class="stat-cap">Single-turn S4 success (693/700) with a GPT-6.1 Sol mutator, on evaluation seeds never seen in search.</span>
+        <span class="stat-cap">Single-turn success (693/700) with a GPT-6.1 Sol mutator, on evaluation seeds never seen in search.</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-count="12.2" data-suffix="x">12.2x</span>
+        <span class="stat-num" data-count="12.2" data-suffix="&times;">12.2&times;</span>
         <span class="stat-cap">Faster per trial than CaP-Agent0 (9.31 s vs 113.6 s), measured with the GPT-5.5 repository at 70.0% (490/700).</span>
       </div>
       <div class="stat">
         <span class="stat-num">0 <span class="vs">vs</span> 66</span>
-        <span class="stat-cap">0 LLM code-generation calls in the control loop, vs up to 66 per CaP-Agent0 trial.</span>
+        <span class="stat-cap">0 LLM code-generation calls in the control loop, vs up to 66 LLM/VLM calls per CaP-Agent0 trial.</span>
       </div>
     </div>
 
@@ -478,7 +478,7 @@
                  alt="Bar chart of LIBERO-PRO success across six perturbation cells. RHO outperforms OpenVLA, pi-0.5, and the prior agentic Code-as-Policies system using only single-turn execution.">
           </noscript>
           <figcaption>
-            Success across six perturbation types (object, goal, and spatial, each as a swap or a paraphrase; 3,000 single-turn trials). With no corrective model edits, RHO outperforms the vision-language-action (VLA) models and the prior Code-as-Policies system.
+            Success across six perturbation types (object, goal, and spatial, each as a swap of initial object positions or a task-level change; 3,000 single-turn trials). With no corrective model edits, RHO outperforms the vision-language-action (VLA) models and the prior Code-as-Policies system.
           </figcaption>
         </figure>
         <div class="result-nums">
@@ -502,7 +502,7 @@
 
     <!-- LIBERO-PRO perturbation contrast -->
     <div class="result-block vla-collapse reveal" data-reveal>
-      <h3 class="sub-head">End-to-end VLAs crater under LIBERO-PRO's perturbations (OpenVLA hits 0.0%), while RHO holds at 64.33%, 4.9x better than &pi;<sub>0.5</sub></h3>
+      <h3 class="sub-head">End-to-end VLAs crater under LIBERO-PRO's perturbations (OpenVLA hits 0.0%), while RHO holds at 64.33%, 4.9&times; better than &pi;<sub>0.5</sub></h3>
       <p class="sub-note">
         This contrast is scoped to <strong>LIBERO-PRO (perturbed)</strong>: task-level and position perturbations that test generalization beyond the standard LIBERO training distribution.
       </p>
@@ -529,7 +529,7 @@
             <div class="score-row">
               <span class="score-name">&pi;<sub>0.5</sub></span>
               <span class="score-val">13.20%</span>
-              <span class="score-note">4.9x lower</span>
+              <span class="score-note">4.9&times; lower</span>
             </div>
             <div class="score-row score-zero">
               <span class="score-name">OpenVLA</span>
@@ -595,7 +595,7 @@
         <!-- Per-task progression (interactive multi-line) -->
         <figure class="ix-chart ix-pertask">
           <figcaption class="ix-title" id="pertask-title">Per-task best-by-train mean reward vs generation</figcaption>
-          <p class="ix-sub">7 Robosuite tasks &middot; 87 accepted candidates &middot; the deployed solver is selected by validation at generation 134. These curves are best-by-train running maxima of mean shaped reward on the 10 training trial IDs, distinct from the held-out per-task success counts: five tasks reach training reward 1.0, two_arm_lift plateaus near 0.73, and nut_assembly stays near 0.06.</p>
+          <p class="ix-sub">7 Robosuite tasks &middot; 87 accepted candidates &middot; the deployed solver is selected by validation at generation 134. These curves are best-by-train running maxima of mean shaped reward on the 10 training trial IDs, distinct from the held-out per-task success counts: five tasks reach training reward 1.0, two-arm lift plateaus near 0.73, and nut assembly stays near 0.06.</p>
 
           <div class="legend-actions">
             <button type="button" id="pt-show-all">Show all</button>
@@ -662,22 +662,22 @@
 
       <div class="o3de-grid">
         <figure>
-          <img loading="lazy" src="static/images/o3de_beforeafter_GroupObjects.png"
+          <img loading="lazy" src="static/images/o3de_beforeafter_GroupObjects.png" width="2572" height="784"
                alt="Before-and-after comparison of the GroupObjects task in the O3DE RAI environment.">
           <figcaption>GroupObjects: from total failure (0.0%) to 37.5% on the hard split, a zero-to-something unlock from repository-level mutation.</figcaption>
         </figure>
         <figure>
-          <img loading="lazy" src="static/images/o3de_beforeafter_CubeTower.png"
+          <img loading="lazy" src="static/images/o3de_beforeafter_CubeTower.png" width="2572" height="784"
                alt="Before-and-after comparison of the CubeTower scene rendered in the O3DE RAI environment.">
           <figcaption>BuildCubeTower, before and after RHO optimization.</figcaption>
         </figure>
         <figure>
-          <img loading="lazy" src="static/images/o3de_beforeafter_MoveObjectsToLeft.png"
+          <img loading="lazy" src="static/images/o3de_beforeafter_MoveObjectsToLeft.png" width="2572" height="784"
                alt="Before-and-after comparison of the MoveObjectsToLeft task in the O3DE RAI environment.">
           <figcaption>MoveObjectsToLeft, before and after RHO.</figcaption>
         </figure>
         <figure>
-          <img loading="lazy" src="static/images/o3de_beforeafter_PlaceCubes.png"
+          <img loading="lazy" src="static/images/o3de_beforeafter_PlaceCubes.png" width="2572" height="784"
                alt="Before-and-after comparison of the PlaceCubes task in the O3DE RAI environment.">
           <figcaption>PlaceCubes, before and after RHO.</figcaption>
         </figure>
@@ -742,37 +742,9 @@
         <div class="bar-row"><span class="bar-label">One session, live REaaS</span><div class="bar-track"><div class="bar-fill" data-w="73.7"><span>73.0% (511/700)</span></div></div></div>
         <div class="bar-row"><span class="bar-label">RHO search</span><div class="bar-track"><div class="bar-fill win" data-w="100"><span>99.0% (693/700)</span></div></div></div>
       </div>
-      <p class="sub-note">The RHO search bar is the best of two searches with the same GPT-6.1 Sol mutator, evaluated on the same 700 trials: repeated sessions, the acceptance gate, and the Pareto frontier take one session's 73.0% to 99.0%. In the no-access evaluation, 34 trials ended in native simulator crashes; we replayed exactly those trials with the same policy, seeds, and evaluator and report their outcomes (13 successes).</p>
+      <p class="sub-note">With the same GPT-6.1 Sol mutator, RHO's search closes the remaining gap: repeated sessions, the acceptance gate, and the Pareto frontier take one session's 73.0% to 99.0% (best of two searches) on the same 700 trials. The searches also trained on more trials (seeds 101&ndash;125) than the single sessions' 12. In the no-access evaluation, 34 trials ended in native simulator crashes; we replayed exactly those trials with the same policy, seeds, and evaluator and report their outcomes (13 successes).</p>
     </div>
 
-    <!-- Honesty asset -->
-    <div class="result-block honesty reveal" data-reveal>
-      <h3 class="sub-head">What's still hard</h3>
-      <div class="honesty-split">
-        <figure class="honesty-vid">
-          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
-                 poster="static/images/poster_real_kinova_mouse_failure_displaced.webp"
-                 data-src="static/videos/real_kinova_mouse_failure_displaced.mp4"
-                 aria-label="Kinova Gen3 failing to lift a computer mouse that was displaced 12 cm two seconds into the trial.">
-          </video>
-          <figcaption>
-            Kinova Gen3, failure (148 s, 3&times; playback): the mouse was displaced 12 cm two seconds into the trial.
-          </figcaption>
-        </figure>
-        <div class="honesty-text">
-          <p>
-            Recovery strategies learned in simulation cover the failures seen in simulation. On real robots,
-            perception degrades under different cameras and lighting, so real-world success can vary even when the
-            program logic executes correctly: the Kinova lifts an unseen mouse in 17 of 20 trials, while the
-            nominally simpler Franka cube lift succeeds in 14 of 20.
-          </p>
-          <p>
-            Per-task tradeoffs remain in simulation. The GPT-5.5 repository, used for the timing and hardware results,
-            trails CaP-Agent0 on cube restacking (54% vs 89%) and two-arm lift (53% vs 74%).
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -811,7 +783,7 @@
       </p>
       <div class="hw-grid hw-grid-3">
         <figure>
-          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
+          <video muted loop playsinline preload="none" controls data-lazy data-rate="3" width="720" height="666"
                  poster="static/images/poster_real_franka_cube_lift.jpg"
                  data-src="static/videos/real_franka_cube_lift.mp4"
                  aria-label="Franka Panda grasping a cube on the tabletop and lifting it.">
@@ -819,7 +791,7 @@
           <figcaption><strong>Franka Emika Panda</strong>: lift a cube. Success, 3&times; playback.</figcaption>
         </figure>
         <figure>
-          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
+          <video muted loop playsinline preload="none" controls data-lazy data-rate="3" width="480" height="720"
                  poster="static/images/poster_real_kinova_mouse_success_after_displacement.webp"
                  data-src="static/videos/real_kinova_mouse_success_after_displacement.mp4"
                  aria-label="Kinova Gen3 lifting a computer mouse after it was moved during the trial.">
@@ -831,6 +803,34 @@
                alt="Ten initial positions of the computer mouse overlaid on one camera frame.">
           <figcaption>Ten initial mouse positions on the Kinova, overlaid on one frame.</figcaption>
         </figure>
+      </div>
+    </div>
+    <!-- Honesty asset -->
+    <div class="result-block honesty reveal" data-reveal>
+      <h3 class="sub-head">What's still hard</h3>
+      <div class="honesty-split">
+        <figure class="honesty-vid">
+          <video muted loop playsinline preload="none" controls data-lazy data-rate="3"
+                 poster="static/images/poster_real_kinova_mouse_failure_displaced.webp"
+                 data-src="static/videos/real_kinova_mouse_failure_displaced.mp4"
+                 aria-label="Kinova Gen3 failing to lift a computer mouse that was displaced 12 cm two seconds into the trial.">
+          </video>
+          <figcaption>
+            Kinova Gen3, failure (148 s, 3&times; playback): the mouse was displaced 12 cm two seconds into the trial.
+          </figcaption>
+        </figure>
+        <div class="honesty-text">
+          <p>
+            Recovery strategies learned in simulation cover the failures seen in simulation. On real robots,
+            perception degrades under different cameras and lighting, so real-world success can vary even when the
+            program logic executes correctly: the Kinova lifts an unseen mouse in 17 of 20 trials, while the
+            nominally simpler Franka cube lift succeeds in 14 of 20.
+          </p>
+          <p>
+            Per-task tradeoffs remain in simulation. The GPT-5.5 repository, used for the timing and hardware results,
+            trails CaP-Agent0 on cube restacking (54% vs 89%) and two-arm lift (53% vs 74%).
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -892,9 +892,9 @@
   </div>
 </section>
 
-<script src="script.js"></script>
-<script src="static/js/charts.js"></script>
-<script src="static/js/compute-race.js"></script>
-<script src="static/js/system-overview.js"></script>
+<script src="script.js?v=steady-3"></script>
+<script src="static/js/charts.js?v=steady-1"></script>
+<script src="static/js/compute-race.js?v=steady-1"></script>
+<script src="static/js/system-overview.js?v=steady-1"></script>
 </body>
 </html>

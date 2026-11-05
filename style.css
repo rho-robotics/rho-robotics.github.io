@@ -458,7 +458,7 @@ figcaption strong { color: var(--text); }
 .o3de-mini { display: flex; gap: 22px; flex-wrap: wrap; color: var(--muted); }
 .o3de-mini strong { color: var(--green); font-size: 1.2rem; }
 .o3de-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.o3de-grid img { width: 100%; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); }
+.o3de-grid img { width: 100%; height: auto; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); }
 @media (max-width: 760px) { .o3de-grid { grid-template-columns: 1fr; } }
 
 /* structural-prior bars (grafted from Variant B, restyled) */
@@ -700,4 +700,4 @@ html { scroll-padding-top: 72px; }  /* keep anchored sections clear of the fixed
 }
 @media (prefers-reduced-motion: reduce) { .sysov *, .sysov { transition: none !important; } }
 .hw-grid-3 { grid-template-columns: 1.081fr 0.667fr 0.667fr; align-items: start; }
-.hw-grid img { height: auto; }
+.hw-grid img, .hw-grid video { height: auto; }
