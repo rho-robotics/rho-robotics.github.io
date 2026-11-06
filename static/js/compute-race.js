@@ -66,14 +66,14 @@
   rhoTick.textContent = "9.31 s";
   axis.appendChild(rhoTick);
 
-  function fmt(v) { return (v >= 100 ? v.toFixed(1) : v.toFixed(v < 10 ? 2 : 1)) + " s"; }
+  function fmt(v, d) { return v.toFixed(d) + " s"; }
 
   function render(sim) {
     var so = Math.min(sim, T_OLD), sn = Math.min(sim, T_NEW);
     fillOld.style.width = (so / T_OLD * 100) + "%";
     fillNew.style.width = (sn / T_OLD * 100) + "%";
-    timeOld.textContent = sim >= T_OLD ? "113.6 s" : fmt(so);
-    timeNew.textContent = sim >= T_NEW ? "9.31 s" : fmt(sn);
+    timeOld.textContent = sim >= T_OLD ? "113.6 s" : fmt(so, 1);  // CaP-Agent0 time is quoted at 1 dp (113.6 s)
+    timeNew.textContent = sim >= T_NEW ? "9.31 s" : fmt(sn, 2);
     var lit = sim >= T_OLD ? CALLS : Math.floor(so / T_OLD * CALLS);
     for (var i = 0; i < dots.length; i++) { dots[i].classList.toggle("on", i < lit); }
     callsOld.textContent = String(lit);

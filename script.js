@@ -23,34 +23,34 @@
       id: "cube_lifting", name: "Cube lifting", status: "win",
       video: V + "cube_lifting_reward1.000.mp4",
       poster: P + "poster_cube_lifting_reward1.000.jpg",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 98% · GPT-6.1 Sol repository (best search) 100% · CaP-Agent0 97% (multi-turn).",
-      nearMiss: { video: V + "cube_lifting_best_failed_reward_0p546_trial_39.mp4", poster: P + "poster_cube_lifting_best_failed_reward_0p546_trial_39.jpg", reward: "reward 0.546", caption: "Best near-miss of the GPT-5.5 repository on this task." }
+      nearMiss: { video: V + "cube_lifting_best_failed_reward_0p546_trial_39.mp4", poster: P + "poster_cube_lifting_best_failed_reward_0p546_trial_39.jpg", reward: "reward 0.55", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
       id: "cube_stack", name: "Cube stacking", status: "win",
       video: V + "cube_stack_reward1.000.mp4",
       poster: P + "poster_cube_stack_reward1.000.jpg",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 98% · GPT-6.1 Sol repository (best search) 99% · CaP-Agent0 98% (multi-turn).",
-      nearMiss: { video: V + "cube_stack_best_failed_reward_0p008_trial_22.mp4", poster: P + "poster_cube_stack_best_failed_reward_0p008_trial_22.jpg", reward: "reward 0.008", caption: "Best near-miss of the GPT-5.5 repository on this task." }
+      nearMiss: { video: V + "cube_stack_best_failed_reward_0p008_trial_22.mp4", poster: P + "poster_cube_stack_best_failed_reward_0p008_trial_22.jpg", reward: "reward 0.01", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
       id: "cube_restack", name: "Cube restacking", status: "win",
       video: V + "cube_restack_reward1.000.mp4",
       poster: P + "poster_cube_restack_reward1.000.jpg",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 54% · GPT-6.1 Sol repository (best search) 98% · CaP-Agent0 89% (multi-turn).",
-      nearMiss: { video: V + "cube_restack_best_failed_reward_0p009_trial_88.mp4", poster: P + "poster_cube_restack_best_failed_reward_0p009_trial_88.jpg", reward: "reward 0.009", caption: "Best near-miss of the GPT-5.5 repository on this task." }
+      nearMiss: { video: V + "cube_restack_best_failed_reward_0p009_trial_88.mp4", poster: P + "poster_cube_restack_best_failed_reward_0p009_trial_88.jpg", reward: "reward 0.01", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
       id: "spill_wipe", name: "Spill wiping", status: "win",
       video: V + "spill_wipe_reward1.000.mp4",
       poster: P + "poster_spill_wipe_reward1.000.jpg",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 100% · GPT-6.1 Sol repository (best search) 100% · CaP-Agent0 100% (multi-turn)."
     },
@@ -58,28 +58,28 @@
       id: "two_arm_handover", name: "Two-arm handover", status: "win",
       video: V + "two_arm_handover_reward1.000.mp4",
       poster: P + "poster_two_arm_handover_reward1.000.jpg",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 86% · GPT-6.1 Sol repository (best search) 99% · CaP-Agent0 20% (multi-turn).",
-      nearMiss: { video: V + "two_arm_handover_best_failed_reward_0p068_trial_50.mp4", poster: P + "poster_two_arm_handover_best_failed_reward_0p068_trial_50.jpg", reward: "reward 0.068", caption: "Best near-miss of the GPT-5.5 repository on this task." }
+      nearMiss: { video: V + "two_arm_handover_best_failed_reward_0p068_trial_50.mp4", poster: P + "poster_two_arm_handover_best_failed_reward_0p068_trial_50.jpg", reward: "reward 0.07", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
       id: "two_arm_lift", name: "Two-arm lift", status: "win",
       video: V + "two_arm_lift_reward1.000.mp4?v=3",
       poster: P + "poster_two_arm_lift_reward1.000.jpg?v=3",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 53% · GPT-6.1 Sol repository (best search) 100% · CaP-Agent0 74% (multi-turn).",
-      nearMiss: { video: V + "two_arm_lift_best_failed_reward_0p330_trial_47.mp4", poster: P + "poster_two_arm_lift_best_failed_reward_0p330_trial_47.jpg", reward: "reward 0.330", caption: "Best near-miss of the GPT-5.5 repository on this task." }
+      nearMiss: { video: V + "two_arm_lift_best_failed_reward_0p330_trial_47.mp4", poster: P + "poster_two_arm_lift_best_failed_reward_0p330_trial_47.jpg", reward: "reward 0.33", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     },
     {
       id: "nut_assembly", name: "Nut assembly", status: "win",
       video: V + "nut_assembly_success_reward_1p000_trial_56.mp4",
       poster: P + "poster_nut_assembly_success_reward_1p000_trial_56.jpg",
-      reward: "reward 1.000",
+      reward: "reward 1.00",
       caption: "One single-turn execution of the GPT-5.5 repository: no visual-difference model and no LLM code-generation calls.",
       vs: "Success on this task: GPT-5.5 repository (shown) 1% · GPT-6.1 Sol repository (best search) 97% · CaP-Agent0 0% (multi-turn).",
-      nearMiss: { video: V + "nut_assembly_best_failed_reward_0p006_trial_11.mp4", poster: P + "poster_nut_assembly_best_failed_reward_0p006_trial_11.jpg", reward: "reward 0.006", caption: "Best near-miss of the GPT-5.5 repository on this task." }
+      nearMiss: { video: V + "nut_assembly_best_failed_reward_0p006_trial_11.mp4", poster: P + "poster_nut_assembly_best_failed_reward_0p006_trial_11.jpg", reward: "reward 0.01", caption: "Best near-miss of the GPT-5.5 repository on this task." }
     }
   ];
 

@@ -35,22 +35,22 @@
 
   var SERIES = [
     { id: "rho",     label: "RHO",  color: "#5cf2a0", avg: 64.33,
-      vals: [74.6, 69.2, 69.4, 46.8, 58.6, 67.4] },
+      vals: [74.60, 69.20, 69.40, 46.80, 58.60, 67.40] },
     { id: "agent0",  label: "CaP-Agent0",    color: "#ffcf5c", avg: 18.03,
-      vals: [21.8, 18.2, 25.6, 16.8, 11.8, 14.0] },
+      vals: [21.80, 18.20, 25.60, 16.80, 11.80, 14.00] },
     { id: "pi05",    label: "π₀.₅", color: "#38bdf8", avg: 13.20,
-      vals: [17.4, 0.8, 37.8, 2.0, 20.4, 0.8] },
-    { id: "openvla", label: "OpenVLA",       color: "#ff6b5c", avg: 0.0,
-      vals: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] }
+      vals: [17.40, 0.80, 37.80, 2.00, 20.40, 0.80] },
+    { id: "openvla", label: "OpenVLA",       color: "#ff6b5c", avg: 0.00,
+      vals: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00] }
   ];
 
   var NOTES = {
     "rho:obj-swap":   "RHO's strongest cell",
-    "rho:goal-task":  "RHO's weakest cell, still 2.8× CaP-Agent0",
+    "rho:goal-task":  "RHO's weakest cell, still 2.79× CaP-Agent0",
     "pi05:obj-swap":  "π₀.₅ lives on swap cells only",
     "pi05:goal-swap": "π₀.₅ lives on swap cells only",
     "pi05:spat-swap": "π₀.₅ lives on swap cells only",
-    "openvla:obj-swap": "0.0% on every cell"
+    "openvla:obj-swap": "0.00% on every cell"
   };
 
   var Y_MAX = 80;
@@ -129,7 +129,7 @@
           fill: isZero ? "#2d3647" : s.color,
           tabindex: "0",
           role: "img",
-          "aria-label": s.label + ", " + cell.suite + " " + cell.kind + ": " + v.toFixed(1) + "%"
+          "aria-label": s.label + ", " + cell.suite + " " + cell.kind + ": " + v.toFixed(2) + "%"
         });
         rect.dataset.series = s.id;
         rect.dataset.cell = cell.key;
@@ -167,7 +167,7 @@
     tip.innerHTML =
       '<div class="tip-sys"><span class="swatch" style="background:' + s.color + '"></span>' + s.label + '</div>' +
       '<div class="tip-cell">' + cell.suite + " · " + cell.kind + '</div>' +
-      '<div class="tip-val">' + v.toFixed(1) + '%</div>' +
+      '<div class="tip-val">' + v.toFixed(2) + '%</div>' +
       (note ? '<div class="tip-note">' + note + '</div>' : '');
     tip.hidden = false;
     positionTipToRect(rect);
@@ -201,7 +201,7 @@
       chip.setAttribute("aria-pressed", "true");
       chip.innerHTML = '<span class="swatch" style="background:' + s.color + '"></span>' +
         '<span class="label">' + s.label + '</span>' +
-        '<span class="avg"> ' + s.avg.toFixed(1) + '%</span>';
+        '<span class="avg"> ' + s.avg.toFixed(2) + '%</span>';
       chip.addEventListener("click", function () {
         active[s.id] = !active[s.id];
         chip.setAttribute("aria-pressed", active[s.id] ? "true" : "false");
@@ -220,8 +220,8 @@
     var body = "<tbody>";
     SERIES.forEach(function (s) {
       body += "<tr><td>" + s.label + "</td>";
-      s.vals.forEach(function (v) { body += "<td>" + v.toFixed(1) + "</td>"; });
-      body += "<td><strong>" + s.avg.toFixed(1) + "</strong></td></tr>";
+      s.vals.forEach(function (v) { body += "<td>" + v.toFixed(2) + "</td>"; });
+      body += "<td><strong>" + s.avg.toFixed(2) + "</strong></td></tr>";
     });
     body += "</tbody>";
     tbl.innerHTML = head + body;
@@ -351,7 +351,7 @@
     if (attrs) { for (var k in attrs) { n.setAttribute(k, attrs[k]); } }
     return n;
   }
-  function fmt(x, d) { return Number(x).toFixed(d == null ? 3 : d); }
+  function fmt(x, d) { return Number(x).toFixed(d == null ? 2 : d); }
 
   function EvolutionChart(host) {
     this.host = host;
@@ -373,8 +373,8 @@
     this.svg = el("svg", { "class": "evo-svg", role: "group", "aria-roledescription": "scatter chart" });
     this.svg.setAttribute("aria-label",
       "Evolution trajectory: mean shaped reward of accepted candidates over generations, " +
-      "with a best-by-validation step line. Starts near " + fmt(META.seedReward, 3) +
-      " and the selected solver g134-s134 reaches " + fmt(META.selectedReward, 3) + ".");
+      "with a best-by-validation step line. Starts near " + fmt(META.seedReward) +
+      " and the selected solver g134-s134 reaches " + fmt(META.selectedReward) + ".");
     h.appendChild(this.svg);
 
     this.tip = document.createElement("div");
@@ -425,7 +425,7 @@
       var yy = sy(yTicks[i]);
       svg.appendChild(el("line", { "class": "evo-grid", x1: plotL, y1: yy, x2: plotR, y2: yy }));
       var t = el("text", { "class": "evo-tick", x: plotL - 7, y: yy + 3.5, "text-anchor": "end" });
-      t.textContent = yTicks[i].toFixed(1);
+      t.textContent = yTicks[i].toFixed(2);
       svg.appendChild(t);
     }
 
@@ -493,8 +493,8 @@
       marker.setAttribute("role", "button");
       var role = isSel ? "selected solver" : isSeed ? "seed program" : isBase ? "first mutation (baseline)" : "accepted candidate";
       marker.setAttribute("aria-label",
-        role + " " + p.id + ", generation " + p.gen + ", mean shaped reward " + fmt(p.reward, 3) +
-        ", best so far " + fmt(p.best, 3));
+        role + " " + p.id + ", generation " + p.gen + ", mean shaped reward " + fmt(p.reward) +
+        ", best so far " + fmt(p.best));
 
       var rec = { data: p, marker: marker, ring: ring, cx: cx, cy: cy, idx: idx };
       self.points.push(rec);
@@ -529,7 +529,7 @@
   };
 
   EvolutionChart.prototype._drawSelLabel = function (svg, cx, cy, d) {
-    var txt = "g134-s134 · selected · " + fmt(META.selectedReward, 3);
+    var txt = "g134-s134 · selected · " + fmt(META.selectedReward);
     var sub = "task success " + META.taskSuccessFrom + " → " + META.taskSuccessTo;
     var padX = 9, lineH = 14, boxH = lineH * 2 + 8;
     var approxW = Math.max(txt.length, sub.length) * (d.mobile ? 6.4 : 7.2) + padX * 2;
@@ -562,7 +562,7 @@
     this._showTip(rec);
     if (fromKeyboard && this.live) {
       this.live.textContent = rec.data.id + ", generation " + rec.data.gen +
-        ", reward " + fmt(rec.data.reward, 3);
+        ", reward " + fmt(rec.data.reward);
     }
   };
 
@@ -580,8 +580,8 @@
     this.tip.innerHTML =
       '<div class="tip-id' + idCls + '">' + p.id + '</div>' +
       '<div class="tip-row"><span class="k">generation</span><span class="v">' + p.gen + '</span></div>' +
-      '<div class="tip-row"><span class="k">mean reward</span><span class="v">' + fmt(p.reward, 3) + '</span></div>' +
-      '<div class="tip-row"><span class="k">best-by-validation</span><span class="v">' + fmt(p.best, 3) + '</span></div>' +
+      '<div class="tip-row"><span class="k">mean reward</span><span class="v">' + fmt(p.reward) + '</span></div>' +
+      '<div class="tip-row"><span class="k">best-by-validation</span><span class="v">' + fmt(p.best) + '</span></div>' +
       tag;
 
     var hostRect = this.host.getBoundingClientRect();
@@ -643,7 +643,7 @@
                  p.id === META.seedId ? "seed program" :
                  p.id === META.baselineId ? "first mutation" : "accepted";
       rows += "<tr" + cls + "><td>" + p.id + "</td><td>" + p.gen + "</td><td>" +
-        fmt(p.reward, 3) + "</td><td>" + fmt(p.best, 3) + "</td><td>" + note + "</td></tr>";
+        fmt(p.reward) + "</td><td>" + fmt(p.best) + "</td><td>" + note + "</td></tr>";
     }
     tbody.innerHTML = rows;
   }
@@ -727,14 +727,14 @@
     "class": "chart-svg",
     viewBox: "0 0 " + SVG_W + " " + SVG_H,
     role: "img",
-    "aria-label": "Per-task best-by-train mean reward over generations. Five of seven tasks reach reward 1.0; two_arm_lift plateaus at 0.73; nut_assembly stays near 0.06. Full values are in the data table below."
+    "aria-label": "Per-task best-by-train mean reward over generations. Five of seven tasks reach reward 1.00; two-arm lift plateaus at 0.73; nut assembly stays near 0.06. Full values are in the data table below."
   });
 
   Y_TICKS.forEach(function (v) {
     var y = yPix(v);
     svg.appendChild(el("line", { "class": "grid-line" + (v === 0 ? " zero" : ""), x1: M.left, y1: y, x2: M.left + PW, y2: y }));
     var lbl = el("text", { "class": "tick-label", x: M.left - 8, y: y + 3.5, "text-anchor": "end" });
-    lbl.textContent = v.toFixed(1);
+    lbl.textContent = v.toFixed(2);
     svg.appendChild(lbl);
   });
   X_TICKS.forEach(function (g) {
@@ -776,7 +776,7 @@
     var last = pts[pts.length - 1];
     var hit = el("path", {
       "class": "series-hit", d: d, tabindex: "0", role: "img",
-      "aria-label": t.label + ": best-by-train mean reward reaches " + last.val.toFixed(3) + " by generation " + last.gen + "."
+      "aria-label": t.label + ": best-by-train mean reward reaches " + last.val.toFixed(2) + " by generation " + last.gen + "."
     });
     hit.addEventListener("focus", function () { emphasize(t.key); showTipAt(t.key, peakIndex(t.key)); });
     hit.addEventListener("blur", function () { deEmphasize(); hideTip(); });
@@ -826,7 +826,7 @@
     tip.innerHTML =
       '<div class="tip-sys"><span class="swatch" style="background:' + col + '"></span>' + t.label + '</div>' +
       '<div class="tip-cell">generation ' + p.gen + '</div>' +
-      '<div class="tip-val">' + p.val.toFixed(3) + ' <span class="unit">mean reward</span></div>';
+      '<div class="tip-val">' + p.val.toFixed(2) + ' <span class="unit">mean reward</span></div>';
     var pos = svgToHostXY(p.x, p.y);
     var hostW = host.getBoundingClientRect().width;
     var left = Math.max(82, Math.min(hostW - 82, pos.left));
@@ -943,7 +943,7 @@
       var td0 = document.createElement("td"); td0.textContent = g; tr.appendChild(td0);
       TASKS.forEach(function (t) {
         var td = document.createElement("td");
-        td.textContent = SERIES[t.key][i].toFixed(3);
+        td.textContent = SERIES[t.key][i].toFixed(2);
         tr.appendChild(td);
       });
       tbody.appendChild(tr);
@@ -963,7 +963,7 @@
   if (!wrap) { return; }
 
   var NOTES = {
-    "70.0%":  "Best ceiling with the smallest budget (200 generations).",
+    "70.00%":  "Best ceiling with the smallest budget (200 generations).",
     "63.86%": "A single-file stub needs more budget (250 generations) and still trails.",
     "33.86%": "Behavior trees: a rigid scaffold caps far below free-form code.",
     "18.14%": "Finite state machines: the most rigid scaffold, the lowest ceiling."
